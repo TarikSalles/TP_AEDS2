@@ -21,8 +21,7 @@ Dib Bit(IndexAmp i, ChaveTipo k)
 */
 
 
-short EExterno(Arvore p)
-{ /* Verifica se p^ e nodo externo */
+short EExterno(Arvore p){ /* Verifica se p^ e nodo externo */
   return (p->nt == Externo);
 }
 
