@@ -1,30 +1,5 @@
-#include <stdlib.h> 
-#include <time.h>
-#include <stdio.h>
-#include <string.h>
-#define D               8   /* depende de ChaveTipo */
-typedef  char * ChaveTipo;
-   /* a definir, dependendo da aplicacao */
-typedef unsigned char IndexAmp;
+#include "Patricia.h"
 
-typedef unsigned char Dib;
-
-typedef enum {
-  Interno, Externo
-} NoTipo;
-typedef struct PatNo* Arvore;
- 
-typedef struct PatNo {
-  NoTipo nt;
-  union {
-    struct {
-      IndexAmp Index;
-      char caract;
-      Arvore Esq, Dir;
-    }NInterno ;
-    ChaveTipo Chave;
-  } NO;
-} PatNo;
 char Pegar_Caractere_Indice(int index, ChaveTipo k){
   if ((int)strlen(k) <= index)
       return NULL;
@@ -195,14 +170,4 @@ void pesquisa_palavra(Arvore raiz, const char *palavra){
   strcpy(chave,palavra);
   Pesquisa(chave,raiz);
 
-}
-int main(){
-   Arvore raiz = NULL;
-   insere_palavra(&raiz,"oi");
-   insere_palavra(&raiz,"teste");
-   insere_palavra(&raiz,"teste123");
-
-  Ordem(raiz);   
-
-    return 1;
 }
