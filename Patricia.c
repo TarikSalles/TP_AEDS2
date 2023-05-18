@@ -1,3 +1,5 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
+
 #include "Patricia.h"
 
 char Pegar_Caractere_Indice(int index, ChaveTipo k){
