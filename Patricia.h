@@ -1,3 +1,5 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
+
 #include <stdlib.h> 
 #include <time.h>
 #include <stdio.h>
