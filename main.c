@@ -2,6 +2,39 @@
 
 #include "Patricia.h"
 
+/*
+void menu(){
+    int opcao;
+    printf("Menu:\n");
+    printf("1 - Receber arquivo de entrada\n");
+    printf("2 - Construir índice invertido\n");
+    printf("3 - Imprimir índice invertido\n");
+    printf("4 - Realizar busca por termo(s)\n");
+    printf("5 - Sair\n");
+    while (1){
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        switch (opcao) {
+            case 1:
+
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                printf("Opcao invalida!\n");
+        }
+    }
+}
+*/
+
+
+
 int main(){
 
     int index_do_arquivo = 0;

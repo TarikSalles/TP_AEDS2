@@ -1,0 +1,2 @@
+/home/alvaro/Documentos/GitHub/TP_AEDS2/builddir/meson-private/cmake_gtksourceview-3.0/CMakeFiles/rebuild_cache.dir
+/home/alvaro/Documentos/GitHub/TP_AEDS2/builddir/meson-private/cmake_gtksourceview-3.0/CMakeFiles/edit_cache.dir
