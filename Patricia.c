@@ -57,7 +57,7 @@ Arvore CriaNoExt(ChaveTipo k){
   p->NO.Chave = k; //Sua palavra
   return p;
 }
-Arvore Pesquisa(ChaveTipo k, Arvore t){
+Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
 
     /Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao/
 
@@ -74,8 +74,8 @@ Arvore Pesquisa(ChaveTipo k, Arvore t){
   if(Pegar_Caractere_Indice(t->NO.NInterno.Index,k) <= t->NO.NInterno.caract)
    /Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
     caractere no No interno analisado, passamos a analisar seu filho esquerdo/
-      return Pesquisa(k,t->NO.NInterno.Esq);
-  else return Pesquisa(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
+      return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
+  else return Pesquisa_Arvore(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
 }
 
 Arvore InsereEntre(ChaveTipo k, Arvore *t, int i)
@@ -104,7 +104,7 @@ Arvore InsereEntre(ChaveTipo k, Arvore *t, int i)
     }
 }
 
-Arvore Insere(ChaveTipo k, Arvore *t){
+Arvore Insere_Arvore(ChaveTipo k, Arvore *t){
 
     /*Funcao com o objetivo de inserir palavra na PATRICIA*/
 
@@ -197,7 +197,7 @@ void insere_palavra(Arvore * raiz, const char *palavra){
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  *raiz= Insere(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
+  *raiz= Insere_Arvore(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
 
 
 }
@@ -208,6 +208,6 @@ void pesquisa_palavra(Arvore raiz, const char *palavra){
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  Pesquisa(chave,raiz); //Chamamos a funcao Pesquisa
+  Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
 }
