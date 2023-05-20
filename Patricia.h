@@ -34,7 +34,7 @@ char Pegar_Caractere_Indice(int index, ChaveTipo k);
 short EExterno(Arvore p);
 Arvore CriaNoInt(int i, Arvore *Esq,  Arvore *Dir, char caract);
 Arvore CriaNoExt(ChaveTipo k);
-void Pesquisa(ChaveTipo k, Arvore t);
+Arvore Pesquisa(ChaveTipo k, Arvore t);
 Arvore InsereEntre(ChaveTipo k, Arvore *t, int i);
 Arvore Insere(ChaveTipo k, Arvore *t);
 void printPalavra(Arvore no);
