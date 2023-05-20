@@ -35,7 +35,7 @@ short EExterno(Arvore p);
 Arvore CriaNoInt(int i, Arvore *Esq,  Arvore *Dir, char caract);
 Arvore CriaNoExt(ChaveTipo k);
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t);
-Arvore InsereEntre(ChaveTipo k, Arvore *t, int i);
+Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i);
 Arvore Insere_Arvore(ChaveTipo k, Arvore *t);
 void printPalavra(Arvore no);
 void Ordem(Arvore ap);
