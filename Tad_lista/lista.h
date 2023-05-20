@@ -1,5 +1,10 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
 #define Max_tam 10
 
 typedef struct celula{

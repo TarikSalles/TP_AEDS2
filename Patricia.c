@@ -7,8 +7,9 @@ char Pegar_Caractere_Indice(int index, ChaveTipo k){
 	/*Funcao com o objetivo de pegar o caractere na posicao index dentro de uma palavra, caso esse indice existir, 
     retorna o caractere, caso nao ,retorna nulo  */
 
-  if ((int)strlen(k) <= index || index < 0)
-      return NULL;
+    if ((int) strlen(k) <= index || index < 0) {
+        return '\0';
+    }
   return k[index];
 }
 /*

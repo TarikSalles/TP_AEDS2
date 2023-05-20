@@ -1,6 +1,7 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
 #include "Patricia.h"
+#include "Tad_lista/lista.h"
 
 /*
 void menu(){
@@ -31,9 +32,52 @@ void menu(){
         }
     }
 }
-*/
+
+// eu preciso receber a para cada palavra uma lista as tuplas de quantidade de ocorrencias e o id do documento
 
 
+void calculaPesos(Arvore raiz, char* entradaBusca){
+    char* string = strtok(entradaBusca, " ");
+    Arvore aux;
+    float pesosW[4] = {0, 0, 0, 0};
+    int i, j;
+    for(i=0; i<4; i++) {
+        aux = Pesquisa(string++, raiz); // Precisa que essa função retorne o endereço de onde foi encontrada a string
+        if(aux) {
+            for (j = 0; j < 4; j++) {
+                pesosW[j] += pesoTermo(raiz->NO.lista[j].num_ocorrencias, 4, raiz->NO.lista[j].fim);
+            }
+        }
+    }
+}
+ */
+
+typedef struct {
+    int idDoc;
+    float relevancia;
+} DocumentoRelevancia;
+
+
+
+// vai ter uma funçao que vai calcular o peso para cada termo
+float calculaRelevancia(Aponta_lista lista, int documentos, int documentosComTermo, int termosDistintos, char* entradaBusca){
+    char* string = strtok(entradaBusca, " ");
+    float relevancia = 0;
+    DocumentoRelevancia documento;
+    int i;
+    for(i=0; i<documentos; i++){
+        documento.idDoc = lista->lista[i].index_arquivo;
+        relevancia += lista[i].num_ocorrencias * (log10f(documentos) / documentosComTermo) * (log10f(documentos) / termosDistintos);
+    }
+    return relevancia;
+}
+
+float pesoTermo(int ocorrenciaTermo, int documentos, int documentosComTermo){
+    if(ocorrenciaTermo == 0)
+        return 0;
+    else
+        return ocorrenciaTermo * (log10f(documentos) / documentosComTermo);
+}
 
 int main(){
 
@@ -44,7 +88,7 @@ int main(){
     Arvore raiz = NULL;
 
     printf("Digite o nome do arquivo que deseja ler:\n");
-    scanf("%s", &nome_do_arquivo);
+    scanf("%s", nome_do_arquivo);
 
     arq = fopen(nome_do_arquivo, "r");
 
@@ -70,8 +114,8 @@ int main(){
             strcpy(string, string_aux);
         }
         printf("string: %s \nindex: %d\n\n", string, index_do_arquivo);
-        //Insere(string, &raiz); 
-        // Insere(string, index_do_arquivo, &raiz); 
+        //insere(string, &raiz);
+        // insere(string, index_do_arquivo, &raiz);
 
     }
     
