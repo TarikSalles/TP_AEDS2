@@ -78,7 +78,7 @@ Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
   else return Pesquisa_Arvore(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
 }
 
-Arvore InsereEntre(ChaveTipo k, Arvore *t, int i)
+Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i)
 { Arvore p;
   char caract;
   if (EExterno(*t) || i < (*t)->NO.NInterno.Index) 
@@ -97,9 +97,9 @@ Arvore InsereEntre(ChaveTipo k, Arvore *t, int i)
   else 
     { 
         if (Pegar_Caractere_Indice((*t)->NO.NInterno.Index, k) <= (*t)->NO.NInterno.caract)
-            (*t)->NO.NInterno.Esq = InsereEntre(k,&(*t)->NO.NInterno.Esq,i);
+            (*t)->NO.NInterno.Esq = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Esq,i);
         else
-            (*t)->NO.NInterno.Dir = InsereEntre(k,&(*t)->NO.NInterno.Dir,i);
+            (*t)->NO.NInterno.Dir = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Dir,i);
         return (*t);
     }
 }
@@ -138,7 +138,7 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t){
               }
               else { //Caso contrario, inserimos ela na arvore
               
-                return (InsereEntre(k, t, i));
+                return (InsereEntre_Arvore(k, t, i));
               }
         } 
      else{  //Caso a palavra analisada ser menor que a contida no No externo
@@ -155,7 +155,7 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t){
                 return (*t);
               }
             else {
-                return (InsereEntre(k, t, i));  //Caso contrario, inserimos ela na arvore
+                return (InsereEntre_Arvore(k, t, i));  //Caso contrario, inserimos ela na arvore
             }
         }
 
