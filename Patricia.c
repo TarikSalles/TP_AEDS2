@@ -57,24 +57,23 @@ Arvore CriaNoExt(ChaveTipo k){
   p->NO.Chave = k; //Sua palavra
   return p;
 }
-void Pesquisa(ChaveTipo k, Arvore t){
+Arvore Pesquisa(ChaveTipo k, Arvore t){
 
-	/*Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao */
-  
+    /Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao/
+
   if (EExterno(t))  //Se o no for externo
   { if (strncmp(k,t->NO.Chave,(int)strlen(k)) ==0){ 
-    /*Compara a palavra armazenada no no externo com a palavra passada para a 
-  funcao pela funcao strncmp que retorna 0 caso forem iguais */
-    printf("Elemento encontrado\n");
+    /Compara a palavra armazenada no no externo com a palavra passada para a 
+  funcao pela funcao strncmp que retorna 0 caso forem iguais/
+    return t;
   }
     else{
-      printf("Elemento nao encontrado\n");
+      return NULL;
     }
-    return;
   } 
   if(Pegar_Caractere_Indice(t->NO.NInterno.Index,k) <= t->NO.NInterno.caract)
-   /*Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
-    caractere no No interno analisado, passamos a analisar seu filho esquerdo */
+   /Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
+    caractere no No interno analisado, passamos a analisar seu filho esquerdo/
       return Pesquisa(k,t->NO.NInterno.Esq);
   else return Pesquisa(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
 }
