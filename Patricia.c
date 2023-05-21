@@ -204,13 +204,13 @@ void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc){
 
 
 }
-void Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
+Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
 
 		/*Funcao auxiliar com o objetivo de pesquisar uma palavra na Patricia, recebendo uma copia da Arvore em si 
         e um vetor constante char(String) como parametro */
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
+  return Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
 }
