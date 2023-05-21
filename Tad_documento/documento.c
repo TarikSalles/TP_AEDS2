@@ -5,7 +5,7 @@
 int inicializaDoc(Tdocumento* doc){
     doc->inicio = 0;
     doc->fim = 0;
-    doc->Patricia = NULL;
+    Inicializar_Arvore(&doc->Patricia);
     return 0;
 }
 

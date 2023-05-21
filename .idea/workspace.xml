@@ -11,10 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bc06fa56-3793-459d-9e83-ffe0847a7694" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tad_documento/documento.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tad_lista/lista.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_lista/lista.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tad_lista/lista.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_lista/lista.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buscaTermo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_documento/documento.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +59,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tad_Patricia" />
+    </key>
+  </component>
   <component name="RunManager" selected="C/C++ File.main.c">
     <configuration name="buscaTermo.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="buscaTermo.c" CONFIG_NAME="buscaTermo.c">
       <option name="sourceFile" value="buscaTermo.c" />
@@ -100,7 +102,7 @@
       <workItem from="1684521764701" duration="1857000" />
       <workItem from="1684541471283" duration="8765000" />
       <workItem from="1684614764537" duration="3904000" />
-      <workItem from="1684698055986" duration="2762000" />
+      <workItem from="1684698055986" duration="3896000" />
     </task>
     <servers />
   </component>

@@ -58,27 +58,6 @@ typedef struct {
 } DocumentoRelevancia;
 
 
-
-// vai ter uma funçao que vai calcular o peso para cada termo
-float calculaRelevancia(Aponta_lista lista, int documentos, int documentosComTermo, int termosDistintos, char* entradaBusca){
-    char* string = strtok(entradaBusca, " ");
-    float relevancia = 0;
-    DocumentoRelevancia documento;
-    int i;
-    for(i=0; i<documentos; i++){
-        documento.idDoc = lista->lista[i].index_arquivo;
-        relevancia += lista[i].num_ocorrencias * (log10f(documentos) / documentosComTermo) * (log10f(documentos) / termosDistintos);
-    }
-    return relevancia;
-}
-
-float pesoTermo(int ocorrenciaTermo, int documentos, int documentosComTermo){
-    if(ocorrenciaTermo == 0)
-        return 0;
-    else
-        return ocorrenciaTermo * (log10f(documentos) / documentosComTermo);
-}
-
 int main(){
 
     int index_do_arquivo = 0;
