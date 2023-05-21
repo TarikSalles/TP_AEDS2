@@ -52,12 +52,6 @@ void calculaPesos(Arvore raiz, char* entradaBusca){
 }
  */
 
-typedef struct {
-    int idDoc;
-    float relevancia;
-} DocumentoRelevancia;
-
-
 int main(){
 
     int index_do_arquivo = 0;
