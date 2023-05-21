@@ -5,7 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#define Max_tam 10
+#define Total_Doc 10
 
 typedef struct celula{
     char index_arquivo;
@@ -15,7 +15,7 @@ typedef struct celula{
 typedef struct Tlista * Aponta_lista;
 
 typedef struct Tlista{
-    celula lista[Max_tam];
+    celula lista[Total_Doc
     int inicio, fim;
 }Tlista;
 

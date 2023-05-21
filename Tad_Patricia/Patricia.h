@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "Tad_lista/lista.h"
+#include "../Tad_lista/lista.h"
 
 #define D               8   /* depende de ChaveTipo */
 #define MAX_WORD_LENGHT 30 //Numero maximo de caracteres de uma palavra

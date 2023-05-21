@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "Patricia.h"
+#include "Tad_Patricia/Patricia.h"
 #include "Tad_lista/lista.h"
 
 /*

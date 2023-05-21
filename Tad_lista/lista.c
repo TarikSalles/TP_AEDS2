@@ -9,7 +9,7 @@ int Inicializa(Tlista * lista){
 }
 
 int Lista_cheia(Tlista * lista){
-    if (lista->fim == (Max_tam - 1)){
+    if (lista->fim == (Total_Doc - 1)){
         printf("\n A lista para alocação dos indices invertidos está cheia!!\n");
         return 1;
     }
