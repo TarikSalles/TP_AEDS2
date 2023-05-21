@@ -21,8 +21,8 @@ typedef struct PatNo {
       IndexAmp Index;
       char caract;
       Arvore Esq, Dir;
-    }NInterno ;
-    ChaveTipo Chave; //No externo armazena a palavra em si, com um tamanho fixo(MAX_WORD_LENGHT)  
+    }NInterno;
+    ChaveTipo Chave; //No externo armazena a palavra em si, com um tamanho fixo(MAX_WORD_LENGHT)
   } NO;
 } PatNo;
 
@@ -38,4 +38,6 @@ void printPalavra(Arvore no);
 void Ordem(Arvore ap);
 void insere_palavra(Arvore * raiz, const char *palavra);
 void pesquisa_palavra(Arvore raiz, const char *palavra);
+float termo(Arvore raiz, char* entradaBusca, int numDocs);
+float pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);
 /*--------------------------Prototipos--------------------------*/

@@ -5,21 +5,23 @@
 int inicializaDoc(Tdocumento* doc){
     doc->inicio = 0;
     doc->fim = 0;
+    doc->Patricia = NULL;
     return 0;
 }
 
 float calculaRelevancia(Tdocumento doc, Arvore raiz, char* entradaBusca, int numDocs){
-    int i, j, numTermos;
+    int i;
     for(i=0; i<numDocs; i++){
-        doc.doc[i]->relevancia = 0;
-        doc.doc[i]->idDoc = i + 1;
+        doc.doc[i].relevancia = 0;
+        doc.doc[i].idDoc = i + 1;
         /*numTermos = strlen(entradaBusca) - 1;
         for(j=0; j<numTermos; j++)*/
-        doc.doc[i]->relevancia += (1/numTermos) * termo(&raiz, entradaBusca, numDocs); //precisa ter alguma função que calcula no numero de termos em cada documento
+        doc.doc[i].relevancia += (1/doc.doc[i].totalTermos) * termo(raiz, entradaBusca, numDocs); //precisa ter alguma função que calcula no numero de termos em cada documento
         doc.fim++;
     }
 }
 
+/*
 float termo(Arvore* raiz, char* entradaBusca, int numDocs){
     char* token = strtok(entradaBusca, " ");
     Arvore* aux;
@@ -41,3 +43,4 @@ float pesoTermo(int numOcorrencias, int numDocs, int docsComTermo){
     else
         return numOcorrencias * (log10(numDocs) / docsComTermo);
 }
+*/
