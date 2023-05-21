@@ -9,6 +9,17 @@ int inicializaDoc(Tdocumento* doc){
     return 0;
 }
 
+int insereDoc(Tdocumento* doc, int idDoc, int totalTermos){
+    doc->doc[doc->fim].idDoc = idDoc;
+    doc->doc[doc->fim].totalTermos = totalTermos;
+    doc->fim++;
+    return 0;
+}
+
+int inserePalavraDoc(Tdocumento* doc, char* palavra, int idDoc){
+    Insere_Palavra_Arvore(&doc->Patricia, palavra, idDoc);
+}
+
 float calculaRelevancia(Tdocumento doc, Arvore raiz, char* entradaBusca, int numDocs){
     int i;
     for(i=0; i<numDocs; i++){
@@ -16,8 +27,24 @@ float calculaRelevancia(Tdocumento doc, Arvore raiz, char* entradaBusca, int num
         doc.doc[i].idDoc = i + 1;
         /*numTermos = strlen(entradaBusca) - 1;
         for(j=0; j<numTermos; j++)*/
-        doc.doc[i].relevancia += (1/doc.doc[i].totalTermos) * termo(raiz, entradaBusca, numDocs); //precisa ter alguma função que calcula no numero de termos em cada documento
+        doc.doc[i].relevancia += (1/doc.doc[i].totalTermos) * termo(raiz, entradaBusca, numDocs, idDoc); //precisa ter alguma função que calcula no numero de termos em cada documento
         doc.fim++;
+    }
+}
+
+void printaEmOrdemMaisRelevante(Tdocumento doc){
+    int i, j;
+    for(i=0; i<doc.fim; i++){
+        for(j=0; j<doc.fim; j++){
+            if(doc.doc[i].relevancia > doc.doc[j].relevancia){
+                celulaDoc aux = doc.doc[i];
+                doc.doc[i] = doc.doc[j];
+                doc.doc[j] = aux;
+            }
+        }
+    }
+    for(i=0; i<doc.fim; i++){
+        printf("Documento %d: %f\n", doc.doc[i].idDoc, doc.doc[i].relevancia);
     }
 }
 

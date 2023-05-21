@@ -15,7 +15,7 @@ typedef struct celula{
 typedef struct Tlista * Aponta_lista;
 
 typedef struct Tlista{
-    celula lista[Total_Doc
+    celula lista[Total_Doc];
     int inicio, fim;
 }Tlista;
 
@@ -24,3 +24,7 @@ int Inicializa(Tlista * lista);
 int Insere(Tlista * lista, char index);
 int Lista_cheia(Tlista * lista);
 int Imprime_lista(Tlista * lista);
+
+// Eu preciso que verifique a tupla de acordo com o idDoc mandado
+// int contaNumeroOcorrencias(aux->NO.lista, idDoc) ?????
+// int numeroTuplas(aux->NO.lista, idDoc) ?????
