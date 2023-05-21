@@ -41,6 +41,6 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t);
 void printPalavra(Arvore no);
 void Ordem(Arvore ap);
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc);
-void Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
+Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
 
 /*--------------------------Prototipos--------------------------*/
