@@ -37,8 +37,8 @@ Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i);
 Arvore Insere_Arvore(ChaveTipo k, Arvore *t);
 void printPalavra(Arvore no);
 void Ordem(Arvore ap);
-void insere_palavra(Arvore * raiz, const char *palavra);
-void pesquisa_palavra(Arvore raiz, const char *palavra);
+void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc);
+void Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
 float termo(Arvore raiz, char* entradaBusca, int numDocs);
 float pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);
 
