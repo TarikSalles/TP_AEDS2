@@ -1,7 +1,10 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
 #include "Patricia.h"
-
+void Inicializar_Arvore(Arvore *p){
+	/*Funcao para inicializar a Patricia */
+	*p = NULL;
+}
 char Pegar_Caractere_Indice(int index, ChaveTipo k){ 
 
 	/*Funcao com o objetivo de pegar o caractere na posicao index dentro de uma palavra, caso esse indice existir, 
@@ -58,29 +61,28 @@ Arvore CriaNoExt(ChaveTipo k){
   p->NO.Chave = k; //Sua palavra
   return p;
 }
-void Pesquisa(ChaveTipo k, Arvore t){
+Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
 
-	/*Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao */
-  
+    /Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao/
+
   if (EExterno(t))  //Se o no for externo
   { if (strncmp(k,t->NO.Chave,(int)strlen(k)) ==0){ 
-    /*Compara a palavra armazenada no no externo com a palavra passada para a 
-  funcao pela funcao strncmp que retorna 0 caso forem iguais */
-    printf("Elemento encontrado\n");
+    /Compara a palavra armazenada no no externo com a palavra passada para a 
+  funcao pela funcao strncmp que retorna 0 caso forem iguais/
+    return t;
   }
     else{
-      printf("Elemento nao encontrado\n");
+      return NULL;
     }
-    return;
   } 
   if(Pegar_Caractere_Indice(t->NO.NInterno.Index,k) <= t->NO.NInterno.caract)
-   /*Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
-    caractere no No interno analisado, passamos a analisar seu filho esquerdo */
-      return Pesquisa(k,t->NO.NInterno.Esq);
-  else return Pesquisa(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
+   /Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
+    caractere no No interno analisado, passamos a analisar seu filho esquerdo/
+      return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
+  else return Pesquisa_Arvore(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
 }
 
-Arvore InsereEntre(ChaveTipo k, Arvore *t, int i)
+Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i)
 { Arvore p;
   char caract;
   if (EExterno(*t) || i < (*t)->NO.NInterno.Index) 
@@ -99,14 +101,14 @@ Arvore InsereEntre(ChaveTipo k, Arvore *t, int i)
   else 
     { 
         if (Pegar_Caractere_Indice((*t)->NO.NInterno.Index, k) <= (*t)->NO.NInterno.caract)
-            (*t)->NO.NInterno.Esq = InsereEntre(k,&(*t)->NO.NInterno.Esq,i);
+            (*t)->NO.NInterno.Esq = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Esq,i);
         else
-            (*t)->NO.NInterno.Dir = InsereEntre(k,&(*t)->NO.NInterno.Dir,i);
+            (*t)->NO.NInterno.Dir = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Dir,i);
         return (*t);
     }
 }
 
-Arvore Insere(ChaveTipo k, Arvore *t){
+Arvore Insere_Arvore(ChaveTipo k, Arvore *t){
 
     /*Funcao com o objetivo de inserir palavra na PATRICIA*/
 
@@ -140,7 +142,7 @@ Arvore Insere(ChaveTipo k, Arvore *t){
               }
               else { //Caso contrario, inserimos ela na arvore
               
-                return (InsereEntre(k, t, i));
+                return (InsereEntre_Arvore(k, t, i));
               }
         } 
      else{  //Caso a palavra analisada ser menor que a contida no No externo
@@ -157,7 +159,7 @@ Arvore Insere(ChaveTipo k, Arvore *t){
                 return (*t);
               }
             else {
-                return (InsereEntre(k, t, i));  //Caso contrario, inserimos ela na arvore
+                return (InsereEntre_Arvore(k, t, i));  //Caso contrario, inserimos ela na arvore
             }
         }
 
@@ -199,7 +201,7 @@ void insere_palavra(Arvore * raiz, const char *palavra){
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  *raiz= Insere(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
+  *raiz= Insere_Arvore(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
 
 
 }
@@ -210,7 +212,7 @@ void pesquisa_palavra(Arvore raiz, const char *palavra){
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  Pesquisa(chave,raiz); //Chamamos a funcao Pesquisa
+  Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
 }
 
