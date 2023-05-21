@@ -32,6 +32,7 @@ typedef struct PatNo {
 /*--------------------------Prototipos--------------------------*/
 char Pegar_Caractere_Indice(int index, ChaveTipo k);
 short EExterno(Arvore p);
+void Inicializar_Arvore(Arvore *p);
 Arvore CriaNoInt(int i, Arvore *Esq,  Arvore *Dir, char caract);
 Arvore CriaNoExt(ChaveTipo k);
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t);
@@ -41,4 +42,5 @@ void printPalavra(Arvore no);
 void Ordem(Arvore ap);
 void insere_palavra(Arvore * raiz, const char *palavra);
 void pesquisa_palavra(Arvore raiz, const char *palavra);
+
 /*--------------------------Prototipos--------------------------*/
