@@ -194,25 +194,25 @@ void Ordem(Arvore ap)
     if(!EExterno(ap))
         Ordem(ap->NO.NInterno.Dir);
 }
-void insere_palavra(Arvore * raiz, const char *palavra){
+void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc){
 
 	/*Funcao auxiliar com o objetivo de inserir uma palavra na Patricia, recebendo o endereco da Arvore em si 
     e um vetor constante char(String) como parametro */
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  *raiz= Insere_Arvore(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
+  *raiz= Insere_Palavra_Arvore(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
 
 
 }
-void pesquisa_palavra(Arvore raiz, const char *palavra){
+void Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
 
 		/*Funcao auxiliar com o objetivo de pesquisar uma palavra na Patricia, recebendo uma copia da Arvore em si 
         e um vetor constante char(String) como parametro */
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
+  Pesquisa_Palavra_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
 }
 
