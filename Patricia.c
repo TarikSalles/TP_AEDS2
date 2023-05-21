@@ -193,7 +193,7 @@ void Ordem(Arvore ap)
     if(!EExterno(ap))
         Ordem(ap->NO.NInterno.Dir);
 }
-void insere_palavra(Arvore * raiz, const char *palavra){
+void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc){
 
 	/*Funcao auxiliar com o objetivo de inserir uma palavra na Patricia, recebendo o endereco da Arvore em si 
     e um vetor constante char(String) como parametro */
@@ -204,7 +204,7 @@ void insere_palavra(Arvore * raiz, const char *palavra){
 
 
 }
-void pesquisa_palavra(Arvore raiz, const char *palavra){
+void Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
 
 		/*Funcao auxiliar com o objetivo de pesquisar uma palavra na Patricia, recebendo uma copia da Arvore em si 
         e um vetor constante char(String) como parametro */
