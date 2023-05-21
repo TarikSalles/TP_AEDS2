@@ -1,7 +1,9 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
 #include "Patricia.h"
-
+void Inicializar_Arvore(Arvore *p){
+	*p = NULL;
+}
 char Pegar_Caractere_Indice(int index, ChaveTipo k){ 
 
 	/*Funcao com o objetivo de pegar o caractere na posicao index dentro de uma palavra, caso esse indice existir, 
