@@ -201,7 +201,7 @@ void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc){
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  *raiz= Insere_Palavra_Arvore(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
+  *raiz= Insere_Arvore(chave,raiz); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
 
 
 }
@@ -212,7 +212,7 @@ void Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  Pesquisa_Palavra_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
+  Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
 }
 
