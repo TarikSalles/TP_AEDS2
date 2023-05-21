@@ -2,6 +2,7 @@
 
 #include "Patricia.h"
 void Inicializar_Arvore(Arvore *p){
+	/*Funcao para inicializar a Patricia */
 	*p = NULL;
 }
 char Pegar_Caractere_Indice(int index, ChaveTipo k){ 
