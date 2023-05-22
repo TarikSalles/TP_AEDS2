@@ -3,7 +3,7 @@
 #define Max_tam 10
 
 typedef struct celula{
-    char index_arquivo;
+    int index_arquivo;
     int num_ocorrencias;
 }celula;
 

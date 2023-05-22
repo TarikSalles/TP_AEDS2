@@ -34,7 +34,7 @@ int Insere(Tlista * lista, char index){
 int Imprime_lista(Tlista * lista){
     int c;
     for (c = lista->inicio; c < lista->fim; c++){
-        printf("< %c, %i >\n", lista->lista[c].index_arquivo, lista->lista[c].num_ocorrencias);
+        printf("< %d, %i >\n", lista->lista[c].index_arquivo, lista->lista[c].num_ocorrencias);
     }
     return 0;
 }
