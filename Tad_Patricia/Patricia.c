@@ -63,12 +63,12 @@ Arvore CriaNoExt(ChaveTipo k){
 }
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
 
-    /Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao/
+    //Funcao que pesquisa se uma palavra existe na PATRICIA, printa no console se a palavra existe ou nao/
 
   if (EExterno(t))  //Se o no for externo
   { if (strncmp(k,t->NO.Chave,(int)strlen(k)) ==0){ 
-    /Compara a palavra armazenada no no externo com a palavra passada para a 
-  funcao pela funcao strncmp que retorna 0 caso forem iguais/
+    //Compara a palavra armazenada no no externo com a palavra passada para a
+  //funcao pela funcao strncmp que retorna 0 caso forem iguais/
     return t;
   }
     else{
@@ -76,8 +76,8 @@ Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
     }
   } 
   if(Pegar_Caractere_Indice(t->NO.NInterno.Index,k) <= t->NO.NInterno.caract)
-   /Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
-    caractere no No interno analisado, passamos a analisar seu filho esquerdo/
+   //Agora analisamos o caractere na posicao index da palavra k, se essa for menor ou igual ao
+    //caractere no No interno analisado, passamos a analisar seu filho esquerdo/
       return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
   else return Pesquisa_Arvore(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
 }
@@ -235,15 +235,6 @@ float termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     return peso;
 }
 
-float termo(Arvore raiz, char* entradaBusca, int numDocs){
-    char* token = strtok(entradaBusca, " ");
-    Arvore aux;
-    float peso = 0;
-    while(token != NULL){
-
-        token = strtok(NULL, " ");
-    }
-}
 float pesoTermo(int numOcorrencias, int numDocs, int docsComTermo){
     if(numOcorrencias == 0)
         return 0;

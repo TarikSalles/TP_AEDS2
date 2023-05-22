@@ -2,53 +2,101 @@
 
 #include "documento.h"
 
+// Inicializa a estrutura Tdocumento
 int inicializaDoc(Tdocumento* doc){
     doc->inicio = 0;
     doc->fim = 0;
-    Inicializar_Arvore(&doc->Patricia);
+    Inicializar_Arvore(&doc->Patricia); // Inicializa a árvore PATRICIA
     return 0;
 }
 
+// Insere um documento na estrutura Tdocumento
 int insereDoc(Tdocumento* doc, int idDoc, int totalTermos){
-    doc->doc[doc->fim].idDoc = idDoc;
-    doc->doc[doc->fim].totalTermos = totalTermos;
-    doc->fim++;
+    doc->doc[doc->fim].idDoc = idDoc; // Define o ID do documento
+    doc->doc[doc->fim].totalTermos = totalTermos; // Define o número total de termos no documento
+    doc->fim++; // Incrementa o valor de fim
     return 0;
 }
 
+// Insere uma palavra em um documento na árvore PATRICIA
 int inserePalavraDoc(Tdocumento* doc, char* palavra, int idDoc){
-    Insere_Palavra_Arvore(&doc->Patricia, palavra, idDoc);
+    Insere_Palavra_Arvore(&doc->Patricia, palavra, idDoc); // Insere a palavra na árvore PATRICIA associada ao documento
+    return 1;
 }
 
-float calculaRelevancia(Tdocumento doc, Arvore raiz, char* entradaBusca, int numDocs){
+// Calcula a relevância de cada documento em relação à entrada de busca e imprime em ordem de relevância
+int relevancia(Tdocumento* doc, Arvore raiz, char* entradaBusca, int numDocs){
     int i;
     for(i=0; i<numDocs; i++){
-        doc.doc[i].relevancia = 0;
-        doc.doc[i].idDoc = i + 1;
-        /*numTermos = strlen(entradaBusca) - 1;
-        for(j=0; j<numTermos; j++)*/
-        doc.doc[i].relevancia += (1/doc.doc[i].totalTermos) * termo(raiz, entradaBusca, numDocs, idDoc); //precisa ter alguma função que calcula no numero de termos em cada documento
-        doc.fim++;
+        doc->doc[i].relevancia = 0;
+        doc->doc[i].relevancia += (1/doc->doc[i].totalTermos) * termo(raiz, entradaBusca, numDocs, doc->doc[i].idDoc);
+        // termo() é uma função que calcula o peso de cada termo buscado para o documento em questão
+        // O resultado é armazenado no campo relevancia do documento
+    }
+    printaEmOrdemMaisRelevante(doc); // Imprime os documentos em ordem de relevância
+    return 1;
+}
+
+// Função auxiliar para trocar dois elementos de celulaDoc
+void trocar(celulaDoc* a, celulaDoc* b) {
+    celulaDoc temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Função auxiliar para particionar o array e obter o índice do pivô
+int particionar(celulaDoc doc[], int esq, int dir) {
+    float pivo = doc[dir].relevancia; // Define o pivô como o valor de relevancia do último elemento
+    int i = esq - 1;
+
+    for (int j = esq; j <= dir - 1; j++) {
+        if (doc[j].relevancia >= pivo) {
+            i++;
+            trocar(&doc[i], &doc[j]); // Troca os elementos maiores ou iguais ao pivô para a esquerda
+        }
+    }
+    trocar(&doc[i + 1], &doc[dir]); // Coloca o pivô na posição correta
+    return (i + 1); // Retorna o índice do pivô
+}
+
+// Função principal do algoritmo QuickSort para ordenação do array de documentos por relevância
+void quicksort(celulaDoc doc[], int esq, int dir) {
+    if (esq < dir) {
+        int pi = particionar(doc, esq, dir); // Obtém o índice do pivô
+        quicksort(doc, esq, pi - 1); // Chama a função recursivamente para a partição da esquerda
+        quicksort(doc, pi + 1, dir); // Chama a função recursivamente para a partição da direita
     }
 }
 
-void printaEmOrdemMaisRelevante(Tdocumento doc){
+// Imprime os documentos em ordem de relevância usando o algoritmo QuickSort para ordenação
+void printaEmOrdemMaisRelevante(Tdocumento* doc) {
+    quicksort(doc->doc, 0, doc->fim - 1); // Ordena os documentos por relevância usando o QuickSort
+
+    for (int i = 0; i < doc->fim; i++) {
+        printf("Documento %d: %f\n", doc->doc[i].idDoc, doc->doc[i].relevancia); // Imprime o ID do documento e sua relevância
+    }
+}
+
+
+
+/*
+void printaEmOrdemMaisRelevante(Tdocumento* doc){
     int i, j;
-    for(i=0; i<doc.fim; i++){
-        for(j=0; j<doc.fim; j++){
-            if(doc.doc[i].relevancia > doc.doc[j].relevancia){
-                celulaDoc aux = doc.doc[i];
-                doc.doc[i] = doc.doc[j];
-                doc.doc[j] = aux;
+    for(i=0; i<doc->fim; i++){
+        for(j=0; j<doc->fim; j++){
+            if(doc->doc[i].relevancia > doc->doc[j].relevancia){
+                celulaDoc aux = doc->doc[i];
+                doc->doc[i] = doc->doc[j];
+                doc->doc[j] = aux;
             }
         }
     }
-    for(i=0; i<doc.fim; i++){
-        printf("Documento %d: %f\n", doc.doc[i].idDoc, doc.doc[i].relevancia);
+    for(i=0; i<doc->fim; i++){
+        printf("Documento %d: %f\n", doc->doc[i].idDoc, doc->doc[i].relevancia);
     }
 }
 
-/*
+
 float termo(Arvore* raiz, char* entradaBusca, int numDocs){
     char* token = strtok(entradaBusca, " ");
     Arvore* aux;
