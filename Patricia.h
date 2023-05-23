@@ -4,7 +4,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <string.h>
-#include "lista.h"
+#include "Tad_lista/lista.h"
 #define D               8   /* depende de ChaveTipo */
 #define MAX_WORD_LENGHT 30 //Numero maximo de caracteres de uma palavra
 typedef  char * ChaveTipo;
@@ -25,9 +25,11 @@ typedef struct PatNo {
       char caract;
       Arvore Esq, Dir;
     }NInterno ;
-    Tlista tuplas;
-    ChaveTipo Chave; //No externo armazena a palavra em si, com um tamanho fixo(MAX_WORD_LENGHT)  
+      ChaveTipo Chave; //No externo armazena a palavra em si, com um tamanho fixo(MAX_WORD_LENGHT) 
+
   } NO;
+    Tlista tuplas;
+
 } PatNo;
 
 /*--------------------------Prototipos--------------------------*/

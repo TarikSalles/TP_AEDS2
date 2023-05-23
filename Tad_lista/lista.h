@@ -5,22 +5,30 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#define Total_Doc 10
 
-typedef struct celula{
+typedef struct TCelula * Aponta_lista;
+
+typedef struct TCelula{
     int index_arquivo;
     int num_ocorrencias;
-}celula;
+    struct TCelula * prox;
+    
+}TCelula;
 
-typedef struct Tlista * Aponta_lista;
 
 typedef struct Tlista{
-    celula lista[Total_Doc];
-    int inicio, fim;
+    Aponta_lista primeiro, ultimo;
 }Tlista;
 
 
 int Inicializa(Tlista * lista);
-int Insere(Tlista * lista, char index);
-int Lista_cheia(Tlista * lista);
+int Insere(Tlista * lista, int index);
+int Lista_vazia(Tlista * lista);
 int Imprime_lista(Tlista * lista);
+int Numero_Ocorrencias_Total(Tlista * lista);
+int Numero_Total_Tuplas(Tlista * lista);
+int Numero_Ocorrencias_Especifico(Tlista * lista, int idDoc);
+
+// Eu preciso que verifique a tupla de acordo com o idDoc mandado
+// int contaNumeroOcorrencias(aux->NO.lista, idDoc) ?????
+// int numeroTuplas(aux->NO.lista, idDoc) ?????

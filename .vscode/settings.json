@@ -1,7 +1,5 @@
 {
-    "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "patricia.h": "c",
-        "string.h": "c"
+        "lista.h": "c"
     }
 }

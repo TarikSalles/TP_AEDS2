@@ -1,10 +1,9 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
-//C:\Users\tarik\OneDrive\Área de Trabalho\TP_AEDS2-Tarik\Tad_documento
+
 #include "Patricia.h"
 void Inicializar_Arvore(Arvore *p){
 	/*Funcao para inicializar a Patricia */
 	*p = NULL;
-  
 }
 char Pegar_Caractere_Indice(int index, ChaveTipo k){ 
 
@@ -54,14 +53,21 @@ Arvore p;
 Arvore CriaNoExt(ChaveTipo k,int idDoc){
 
 /*Funcao que cria um No externo, passando para o mesmo sua respectiva palavra armazenada*/
-    
+
   Arvore p;
   p = (Arvore)malloc(sizeof(PatNo)); //Alocacao de memoria
   p->nt = Externo; //No do tipo externo
   p->NO.Chave = k; //Sua palavra
-  Inicializa(&(p->NO.tuplas));
+  //Insere(&(p)->tuplas,idDoc);
+  Tlista Aux;
+  Inicializa(&Aux);
+  Insere(&Aux,idDoc);
   
-  Insere(&((p)->NO.tuplas),idDoc);
+   p->tuplas = Aux;
+  //Imprime_lista(&p->tuplas);
+
+
+ 
   return p;
 }
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
@@ -114,12 +120,12 @@ Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,int idDoc)
 Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
 
     /*Funcao com o objetivo de inserir palavra na PATRICIA*/
+
   Arvore p;
   int i;
-  if (*t == NULL){//Caso a arvore for nula, cria-se um No externo, que sera nesse caso o unico elemento da arvore
+  if (*t == NULL) //Caso a arvore for nula, cria-se um No externo, que sera nesse caso o unico elemento da arvore
   return (CriaNoExt(k,idDoc));
- 
-}else 
+  else 
     { p = *t;
       while (!EExterno(p)) { //Enquanto nao encontrarmos um no externo seguimos na arvore
 
@@ -140,10 +146,11 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
                 i++;
         
               if (i >=(int) strlen(k)){ //Se i for maior do que o tamanho da palavra analisada, a palavra ja esta na arvore
-                printf("Chave ja esta na arvore");
+                //printf("Chave ja esta na arvore");
 
                 //Função que insere ou incrementa na tupla
-                Insere(&((*t))->NO.tuplas,idDoc);
+                Insere(&p->tuplas,idDoc);
+                //Insere(&((*t))->NO.tuplas,idDoc);
             
                 return (*t);
               }
@@ -161,8 +168,10 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
                 i++;
         
               if (i >= (int)strlen(p->NO.Chave)){ //Se i for maior do que o tamanho da palavra analisada, a palavra ja esta na arvore
-                printf("Chave esta na arvore");
-                Insere(&((*t))->NO.tuplas,idDoc);
+                //printf("Chave esta na arvore");
+                Insere(&p->tuplas,idDoc);
+
+                //Insere(&((*t))->NO.tuplas,idDoc);
                 return (*t);
               }
             else {
@@ -183,7 +192,7 @@ void printPalavra(Arvore no) {
         printf("No Nulo\n");
     else if(no->nt == Externo){
         printf("Chave:%s ",no->NO.Chave);
-        Imprime_lista(&no->NO.tuplas);
+        Imprime_lista(&no->tuplas);
         
         
     }
