@@ -1,40 +1,47 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
+
 #include "lista.h"
 
 int Inicializa(Tlista * lista){
-    lista->inicio = 0;
-    lista->fim = 0;
-    return 0;
+    lista->primeiro = (Aponta_lista)malloc(sizeof(TCelula));
+    if (lista->primeiro){
+        lista->ultimo = lista->primeiro;
+        lista->ultimo->prox = NULL;
+    }
 }
 
-int Lista_cheia(Tlista * lista){
-    if (lista->fim == (Max_tam - 1)){
-        printf("\n A lista para alocação dos indices invertidos está cheia!!\n");
-        return 1;
-    }
-    return 0;
+int Lista_vazia(Tlista * lista){
+    return lista->primeiro == lista->ultimo;
 }
 
-int Insere(Tlista * lista, char index){
-    int c;
-    if (Lista_cheia(lista)){
-        return 1;
-    }
-
-    for (c = lista->inicio; c < lista->fim; c++){
-        if (lista->lista[c].index_arquivo == index){
-            lista->lista[c].num_ocorrencias++;
+int Insere(Tlista * lista, int index){
+    Aponta_lista aux;
+    
+    aux = lista->primeiro->prox;
+    while(aux != NULL){
+        if (aux->index_arquivo == index){
+            aux->num_ocorrencias += 1;
             return 0;
         }
+        aux = aux->prox;
     }
-    lista->lista[lista->fim].index_arquivo = index;
-    lista->lista[lista->fim].num_ocorrencias = 1;
-    lista->fim++;
+    lista->ultimo->prox = (Aponta_lista)malloc(sizeof(TCelula));
+    lista->ultimo = lista->ultimo->prox;
+    lista->ultimo->index_arquivo = index;
+    lista->ultimo->num_ocorrencias = 1;
+    lista->ultimo->prox = NULL;
+    return 0;
+        
 }
 
 int Imprime_lista(Tlista * lista){
-    int c;
-    for (c = lista->inicio; c < lista->fim; c++){
-        printf("< %d, %i >\n", lista->lista[c].index_arquivo, lista->lista[c].num_ocorrencias);
+    Aponta_lista aux;
+    aux = lista->primeiro->prox;
+    printf("Tuplas < qtde, idDoc >:\n");
+    while(aux != NULL){
+        printf("< %d, %d >\n", aux->num_ocorrencias,aux->index_arquivo );
+        aux = aux->prox;
     }
     return 0;
 }
+
