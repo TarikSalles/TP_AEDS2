@@ -1,21 +1,27 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
+
 #include <stdio.h>
 #include <stdlib.h>
-#define Max_tam 10
+#include <string.h>
+#include <time.h>
+#include <math.h>
 
-typedef struct celula{
+typedef struct TCelula * Aponta_lista;
+
+typedef struct TCelula{
     int index_arquivo;
     int num_ocorrencias;
-}celula;
+    struct TCelula * prox;
+    
+}TCelula;
 
-typedef struct Tlista * Aponta_lista;
 
 typedef struct Tlista{
-    celula lista[Max_tam];
-    int inicio, fim;
+    Aponta_lista primeiro, ultimo;
 }Tlista;
 
 
 int Inicializa(Tlista * lista);
-int Insere(Tlista * lista, char index);
+int Insere(Tlista * lista, int index);
 int Lista_cheia(Tlista * lista);
 int Imprime_lista(Tlista * lista);
