@@ -25,3 +25,10 @@ int Inicializa(Tlista * lista);
 int Insere(Tlista * lista, int index);
 int Lista_cheia(Tlista * lista);
 int Imprime_lista(Tlista * lista);
+int Numero_Ocorrencias_Total(Tlista * lista);
+int Numero_Total_Tuplas(Tlista * lista);
+int Numero_Ocorrencias_Especifico(Tlista * lista, int idDoc);
+
+// Eu preciso que verifique a tupla de acordo com o idDoc mandado
+// int contaNumeroOcorrencias(aux->NO.lista, idDoc) ?????
+// int numeroTuplas(aux->NO.lista, idDoc) ?????
