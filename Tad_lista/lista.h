@@ -23,7 +23,7 @@ typedef struct Tlista{
 
 int Inicializa(Tlista * lista);
 int Insere(Tlista * lista, int index);
-int Lista_cheia(Tlista * lista);
+int Lista_vazia(Tlista * lista);
 int Imprime_lista(Tlista * lista);
 int Numero_Ocorrencias_Total(Tlista * lista);
 int Numero_Total_Tuplas(Tlista * lista);

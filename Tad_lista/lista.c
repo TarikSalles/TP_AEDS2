@@ -10,7 +10,7 @@ int Inicializa(Tlista * lista){
     }
 }
 
-int Lista_cheia(Tlista * lista){
+int Lista_vazia(Tlista * lista){
     return lista->primeiro == lista->ultimo;
 }
 
