@@ -4,17 +4,22 @@
 
 // Inicializa a estrutura Tdocumento
 int inicializaDoc(Tdocumento* doc){
-    doc->inicio = 0;
-    doc->fim = 0;
+    doc->primeiro = (Aponta_doc)malloc(sizeof(celulaDoc));
+    if (doc->primeiro){
+        doc->ultimo = doc->primeiro;
+        doc->ultimo->prox = NULL;
+    }
     Inicializar_Arvore(&doc->Patricia); // Inicializa a árvore PATRICIA
-    return 0;
 }
 
 // Insere um documento na estrutura Tdocumento
 int insereDoc(Tdocumento* doc, int idDoc, int totalTermos){
-    doc->doc[doc->fim].idDoc = idDoc; // Define o ID do documento
-    doc->doc[doc->fim].totalTermos = totalTermos; // Define o número total de termos no documento
-    doc->fim++; // Incrementa o valor de fim
+    doc->ultimo->prox = (Aponta_doc)malloc(sizeof(celulaDoc));
+    doc->ultimo = doc->ultimo->prox;
+    doc->ultimo->idDoc = idDoc; // Define o ID do documento
+    doc->ultimo->totalTermos = totalTermos; // Define o número total de termos no documento
+    doc->ultimo->relevancia = 0; // Define a relevância do documento
+    doc->ultimo->prox = NULL;
     return 0;
 }
 
@@ -26,13 +31,18 @@ int inserePalavraDoc(Tdocumento* doc, char* palavra, int idDoc){
 
 // Calcula a relevância de cada documento em relação à entrada de busca e imprime em ordem de relevância
 int relevancia(Tdocumento* doc, Arvore raiz, char* entradaBusca, int numDocs){
-    int i;
+    Aponta_doc aux = doc->primeiro->prox;
+    while(aux != NULL){ // Percorre a lista de documentos
+        //aux->relevancia = 0;
+        aux->relevancia = (1 / aux->totalTermos) * termo(&doc->Patricia, entradaBusca, aux->idDoc);
+    }
+    /*
     for(i=0; i<numDocs; i++){
         doc->doc[i].relevancia = 0;
-        doc->doc[i].relevancia += (1/doc->doc[i].totalTermos) * termo(raiz, entradaBusca, numDocs, doc->doc[i].idDoc);
+        doc->doc[i].relevancia += (1/doc->doc[i].totalTermos) * termo(doc->Patricia, entradaBusca, numDocs, doc->doc[i].idDoc);
         // termo() é uma função que calcula o peso de cada termo buscado para o documento em questão
         // O resultado é armazenado no campo relevancia do documento
-    }
+    }*/
     printaEmOrdemMaisRelevante(doc); // Imprime os documentos em ordem de relevância
     return 1;
 }
