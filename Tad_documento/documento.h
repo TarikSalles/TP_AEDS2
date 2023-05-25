@@ -4,8 +4,13 @@
 
 typedef struct celulaDoc{
     int idDoc;
+<<<<<<< Updated upstream
     int totalTermos; // No momento da inserção da palavra, irá incrementar o total de termos distintos no documento
     float relevancia; // Será calculado no momento da busca
+=======
+    int totalTermos; //conta o total de termos
+    float relevancia;
+>>>>>>> Stashed changes
 } celulaDoc;
 
 typedef struct Tdocumento * Aponta_doc;
