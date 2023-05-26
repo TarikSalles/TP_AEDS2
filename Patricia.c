@@ -61,30 +61,33 @@ Arvore CriaNoExt(ChaveTipo k,int idDoc){
   return p;
 }
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
-
-  int tam_word = strlen(k);
-  int index_char = t->NO.NInterno.Index;
+/*Funcao que retorna a palavra caso ela exista na arvore,
+e nulo caso nao exista */
+  int tam_word = strlen(k); //Tamanho da palavra
+  int index_char = t->NO.NInterno.Index; //Index contido no No interno
 
   if (EExterno(t))  //Se o no for externo
-  { if (strncmp(k,t->NO.Chave,(int)strlen(k)) ==0){ 
-
-    return t;
+  { if (strncmp(k,t->NO.Chave,(int)strlen(k)) ==0){  
+//Compara a palavra dentro do No com a passada para a funcao
+    return t; //Retorna a arvore
 
   }
     else{
-      return NULL;
+      return NULL; //Se as palavras nao forem iguais, retorna nulo
     }
   } 
-  if(tam_word < t->NO.NInterno.Index){
-      return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
+  if(tam_word < t->NO.NInterno.Index){ 
+	  //Se o tamanho da palavra for menor que o index do no interno
+      return Pesquisa_Arvore(k,t->NO.NInterno.Esq); //Chama a funcao para o filho esquerdo
   }
-   else if (k[index_char] < t->NO.NInterno.caract)
+   else if (k[index_char] < t->NO.NInterno.caract) 
   {
-      return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
+	   //Se o caractere no indice i da palavra  for menor que o caractere do no interno
+      return Pesquisa_Arvore(k,t->NO.NInterno.Esq); //Chama a funcao para o filho esquerdo
   }
   else
   {
-      return Pesquisa_Arvore(k,t->NO.NInterno.Dir);
+      return Pesquisa_Arvore(k,t->NO.NInterno.Dir); //Chama a funcao para o filho direito
   }
 }
 
@@ -95,36 +98,40 @@ Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,char char_diferente,int 
   if (EExterno(*t)) 
   { /* cria um novo no externo */
         p = CriaNoExt(k,idDoc);
-        if(strcmp((*t)->NO.Chave,k) < 0){
+        if(strcmp((*t)->NO.Chave,k) < 0){ //Se a palavra contida no no externo for maior do que a passada
           
-          return CriaNoInt(i,t , &p,char_diferente);
+          return CriaNoInt(i,t , &p,char_diferente); //Cria-se no novo interno com filho esquerdo t e filho direito p
         }
-        else if(strcmp((*t)->NO.Chave,k) > 0){
-          return CriaNoInt(i,&p , t,char_diferente);
+        else if(strcmp((*t)->NO.Chave,k) > 0){ //Se a palavra contida no no externo for maior do que a passada
+          return CriaNoInt(i,&p , t,char_diferente); //Cria-se no novo interno com filho direito t e filho esquerdo p
 
         }
-        return NULL;
+        return NULL; //Caso nao conseguir inserir retorna nulo
   
-}else if(i < (*t)->NO.NInterno.Index){
-  p = CriaNoExt(k,idDoc);
-  if(k[i] < char_diferente){
-    return CriaNoInt(i,&p,t,char_diferente);
-  }else{
-    return CriaNoInt(i,t,&p,char_diferente);
+}else if(i < (*t)->NO.NInterno.Index){ //Caso i for menor do que o index armazenado no no interno
+  p = CriaNoExt(k,idDoc); //Cria novo no externo
+  if(k[i] < char_diferente){ //Caso o caractere na posicao i da palavra for menor que o caractere diferencial
+    return CriaNoInt(i,&p,t,char_diferente); //Cria novo no interno com filho esquerdo p e filho direito t
+  }else{ //Caso o caractere na posicao i da palavra for maior ou igual ao caractere diferencial
+    return CriaNoInt(i,t,&p,char_diferente); //Cria novo no interno com filho esquerdo t e filho direito p
   }
  
-}else{
-int Index_Mudado = (*t)->NO.NInterno.Index;
-if(k[Index_Mudado] < (*t)->NO.NInterno.caract){
+}else{ 
+int Index_Mudado = (*t)->NO.NInterno.Index; //Armazena indice do no interno
+if(k[Index_Mudado] < (*t)->NO.NInterno.caract){ 
+	//Se o caractere na posicao Index_Mudado da palavra for menor que o armazenado no No interno
   
 (*t)->NO.NInterno.Esq = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Esq,i,char_diferente,idDoc);
+	/*O filho esquerdo do no interno recebe o resultado da funcao */
 
 
-}else{
+}else{ 
+		//Se o caractere na posicao Index_Mudado da palavra for maior que o armazenado no No interno
+
   (*t)->NO.NInterno.Dir = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Dir,i,char_diferente,idDoc);
-
+/*O filho direito do no interno recebe o resultado da funcao */
 }
-return (*t);
+return (*t); //Retorna nova arvore
 
 
 }
@@ -134,20 +141,20 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
 
     /*Funcao com o objetivo de inserir palavra na PATRICIA*/
 
-  Arvore p;
+  Arvore p; //Arvore auxiliar
   /*Talvez seja*/
   if (*t == NULL){ //Caso a arvore for nula, cria-se um No externo, que sera nesse caso o unico elemento da arvore
-  return (CriaNoExt(k,idDoc));
+  return (CriaNoExt(k,idDoc)); 
   }else 
-    { p = *t;
+    { p = *t;  
       int i;
-      char aux;
+      char aux; 
 
       while (!EExterno(p)) { //Enquanto nao encontrarmos um no externo seguimos na arvore
 
           /*Se o caractere na posicao index da palavra for menor do que o caractere no no interno analisado, 
          seguimos para o filho a esquerda */
-         if (Pegar_Caractere_Indice(p->NO.NInterno.Index,k) < p->NO.NInterno.caract)
+         if (Pegar_Caractere_Indice(p->NO.NInterno.Index,k) < p->NO.NInterno.caract) 
                 p = p->NO.NInterno.Esq;
           else if (Pegar_Caractere_Indice(p->NO.NInterno.Index,k) >= p->NO.NInterno.caract)
                 p = p->NO.NInterno.Dir;
@@ -156,29 +163,29 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
 
         }
       i= 0;
-    if(strcmp(p->NO.Chave,k) == 0){
-       Insere(&p->tuplas,idDoc);
-       printf("\nPalavra %s ja existe na Arvore\n",p->NO.Chave);
-       return (*t);
+    if(strcmp(p->NO.Chave,k) == 0){ //Se a palavra armazenada no No for igual a palavra k
+       Insere(&p->tuplas,idDoc); //Palavra ja existe e agora e incrementado na tupla
+       printf("\nPalavra %s ja existe na Arvore\n",p->NO.Chave); 
+       return (*t); //Retorna arvore para sair da funcao
 
-    }else{
-            printf("%s-%s",p->NO.Chave,k);
+    }else{ //Palavra nao existe na Patricia
+            
 
-      char char_diferente;
-      int menor_tamanho = (strlen(k) < strlen(p->NO.Chave)) ? strlen(k) : strlen(p->NO.Chave);
-      for(i = 0; i <= menor_tamanho; i++){
-        if(k[i] != p->NO.Chave[i]){
-            if(k[i] < p->NO.Chave[i]){
-              char_diferente = p->NO.Chave[i];
-              break;
-            }else{
-              char_diferente = k[i];
-              break;
+      char char_diferente; //caractere diferencial
+      int menor_tamanho = (strlen(k) < strlen(p->NO.Chave)) ? strlen(k) : strlen(p->NO.Chave); //Encontra qual e menor, k ou a palavra no No
+      for(i = 0; i <= menor_tamanho; i++){ //Percorre os caracteres das duas palavras ate o maior indice da menor palavra
+        if(k[i] != p->NO.Chave[i]){ //Se o caractere no indice nao for igual entre as duas palavras
+            if(k[i] < p->NO.Chave[i]){ //Se o caractere no indice i da palavra k for menor que a na mesma posicao na palavra no No
+              char_diferente = p->NO.Chave[i]; //caractere diferencial recebe char na posicao i do No
+              break; //Quebra
+            }else{ //Se o caractere no indice i da palavra k for maior ou igual que a na mesma posicao na palavra no No
+              char_diferente = k[i]; //caractere diferencial recebe char na posicao i da palavra
+              break; //Sai do loop
             }
 
         }
       }
-    return (InsereEntre_Arvore(k, t, i,char_diferente,idDoc)); 
+    return (InsereEntre_Arvore(k, t, i,char_diferente,idDoc)); //Retorna o resultado de InsereEntre_Arvore  passando t como arvore
 
     }
     
@@ -186,7 +193,7 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
     
 
 }
-void printPalavra(Arvore no) {
+void printPalavra(Arvore no) { 
 
     /* Funcao com o objetivo de imprimir todas as palavras dentro da Patricia*/
 
