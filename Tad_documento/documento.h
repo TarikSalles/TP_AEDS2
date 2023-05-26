@@ -2,16 +2,21 @@
 
 #include "../Tad_Patricia/Patricia.h"
 
-typedef struct celulaDoc * Aponta_doc;
 typedef struct celulaDoc{
     int idDoc;
+<<<<<<< Updated upstream
     int totalTermos; // No momento da inserção da palavra, irá incrementar o total de termos distintos no documento
-    double relevancia; // Será calculado no momento da busca
-    Aponta_doc prox;
+    float relevancia; // Será calculado no momento da busca
+=======
+    int totalTermos; //conta o total de termos
+    float relevancia;
+>>>>>>> Stashed changes
 } celulaDoc;
 
+typedef struct Tdocumento * Aponta_doc;
 typedef struct Tdocumento {
-    Aponta_doc primeiro, ultimo;
+    celulaDoc doc[Total_Doc]; // Vetor de documentos
+    int inicio, fim;
     Arvore Patricia;
 } Tdocumento;
 
@@ -19,7 +24,7 @@ typedef struct Tdocumento {
 int inicializaDoc(Tdocumento* doc);
 
 // Insere um documento na estrutura Tdocumento
-int insereDoc(Tdocumento* doc, int idDoc, int totalTermos);
+int insereDoc(Tdocumento* doc, int idDoc);
 
 // Insere uma palavra em um documento na árvore PATRICIA
 int inserePalavraDoc(Tdocumento* doc, char* palavra, int idDoc);
