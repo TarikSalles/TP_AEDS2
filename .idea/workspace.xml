@@ -10,15 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc06fa56-3793-459d-9e83-ffe0847a7694" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tad_documento/documentoAntigo.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tad_documento/documentoAntigo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/teste" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tad_Patricia/Patricia.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_Patricia/Patricia.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tad_busca/busca.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_busca/busca.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tad_busca/busca.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_busca/busca.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tad_documento/documento.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tad_documento/documento.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +122,7 @@
       <workItem from="1684614764537" duration="3904000" />
       <workItem from="1684698055986" duration="14687000" />
       <workItem from="1685059023580" duration="3233000" />
-      <workItem from="1685062828924" duration="6951000" />
+      <workItem from="1685062828924" duration="7595000" />
     </task>
     <servers />
   </component>

@@ -8,10 +8,12 @@ int InicializaBusca(TBusca * busca){
         busca->ultimo = busca->primeiro;
         busca->ultimo->prox = NULL;
     }
+    // Inicializa a lista encadeada de busca com uma célula de cabeça vazia
 }
 
 int BuscaVazia(TBusca * busca){
     return busca->primeiro == busca->ultimo;
+    // Verifica se a lista de busca está vazia, comparando o primeiro e último elementos
 }
 
 int InsereBuscaOrdenado(TBusca* busca, int idDoc, double relevancia) {
@@ -34,8 +36,8 @@ int InsereBuscaOrdenado(TBusca* busca, int idDoc, double relevancia) {
     if (atual == NULL) {
         busca->ultimo = novaCelula;
     }
-
-    return 0;
+    // Insere uma nova célula na lista encadeada de busca em ordem crescente de relevância
+    // A nova célula é inserida na posição correta mantendo a ordem da lista
 }
 
 void ImprimeBusca(TBusca* busca, Tdocumento* doc) {
@@ -46,9 +48,9 @@ void ImprimeBusca(TBusca* busca, Tdocumento* doc) {
         printf("Relevancia: %.2lf\n", aux->relevancia);
         aux = aux->prox;
     }
+    // Percorre a lista de busca e imprime os resultados, juntamente com a relevância
+    // A função imprimeDoc() imprime informações do documento associado ao ID armazenado na célula de busca
 }
-
-
 
 int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* busca){
     double relevancia;
@@ -60,8 +62,12 @@ int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* 
             InsereBuscaOrdenado(busca, aux->idDoc, relevancia);
         aux = aux->prox;
     }
-    ImprimeBusca(busca);
+    ImprimeBusca(busca, doc);
+    // Realiza o cálculo da relevância para cada documento e insere na lista encadeada de busca
+    // A relevância é calculada utilizando a função termo() e os resultados são inseridos em ordem na lista
+    // Em seguida, os resultados são impressos utilizando a função ImprimeBusca()
 }
+
 
 /*
 int InsereBusca(TBusca * busca, int idDoc, double relevancia){
