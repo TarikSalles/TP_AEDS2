@@ -11,29 +11,19 @@ char Pegar_Caractere_Indice(int index, ChaveTipo k){
     retorna o caractere, caso nao ,retorna nulo  */
 
   if ((int)strlen(k) <= index || index < 0)
-      return NULL;
+      return '\0';
   return k[index];
 }
-/*
-Dib Bit(IndexAmp i, ChaveTipo k)
-{ // Retorna o i-esimo bit da chave k a partir da esquerda 
-  int  c, j;
-  if (i == 0)
-  return 0;
-  else 
-    { c = k;
-      for (j = 1; j <= D - i; j++)
-	c /= 2;
-      return (c & 1);
-    }
-} 
-*/
-
 
 short EExterno(Arvore p){ 
     /* Verifica se p e um no externo */
 
   return (p->nt == Externo);
+}
+short EInterno(Arvore p){ 
+    /* Verifica se p e um no externo */
+
+  return (p->nt == Interno);
 }
 
 Arvore CriaNoInt(int i, Arvore *Esq,  Arvore *Dir, char caract) { 
@@ -53,68 +43,91 @@ Arvore p;
 Arvore CriaNoExt(ChaveTipo k,int idDoc){
 
 /*Funcao que cria um No externo, passando para o mesmo sua respectiva palavra armazenada*/
-
+  if (strlen(k) > MAX_WORD_LENGHT)
+    return NULL;
   Arvore p;
   p = (Arvore)malloc(sizeof(PatNo)); //Alocacao de memoria
   p->nt = Externo; //No do tipo externo
-  p->NO.Chave = k; //Sua palavra
-  //Insere(&(p)->tuplas,idDoc);
+  p->NO.Chave = (char*) malloc(MAX_WORD_LENGHT);
+  
+  strcpy(p->NO.Chave,k);
+  p->NO.Chave =k; //Sua palavra
   Tlista Aux;
   Inicializa(&Aux);
   Insere(&Aux,idDoc);
   
    p->tuplas = Aux;
-  //Imprime_lista(&p->tuplas);
-
-
  
   return p;
 }
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t){
 
-    
+  int tam_word = strlen(k);
+  int index_char = t->NO.NInterno.Index;
 
   if (EExterno(t))  //Se o no for externo
   { if (strncmp(k,t->NO.Chave,(int)strlen(k)) ==0){ 
+
     return t;
+
   }
     else{
       return NULL;
     }
   } 
-  if(Pegar_Caractere_Indice(t->NO.NInterno.Index,k) <= t->NO.NInterno.caract){
+  if(tam_word < t->NO.NInterno.Index){
       return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
   }
-  else{
-      return Pesquisa_Arvore(k,t->NO.NInterno.Dir); //Caso nao for menor, analisamos seu filho direito
+   else if (k[index_char] < t->NO.NInterno.caract)
+  {
+      return Pesquisa_Arvore(k,t->NO.NInterno.Esq);
+  }
+  else
+  {
+      return Pesquisa_Arvore(k,t->NO.NInterno.Dir);
   }
 }
 
-Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,int idDoc)
-{ Arvore p;
+Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,char char_diferente,int idDoc)
+{ Arvore p = NULL;
   char caract;
-  if (EExterno(*t) || i < (*t)->NO.NInterno.Index) 
-  { /* cria um novo no externo */
-    if(EExterno(*t)){
-            caract = Pegar_Caractere_Indice(i,(*t)->NO.Chave);
-        }
-        else{
-          caract = (*t)->NO.NInterno.caract;
-        }
 
+  if (EExterno(*t)) 
+  { /* cria um novo no externo */
         p = CriaNoExt(k,idDoc);
-        if (Pegar_Caractere_Indice(i, k) <= caract)
-            return (CriaNoInt(i,&p,t,Pegar_Caractere_Indice(i, k)));
-        else return (CriaNoInt(i,t,&p,caract));
-  } 
-  else 
-    { 
-        if (Pegar_Caractere_Indice((*t)->NO.NInterno.Index, k) <= (*t)->NO.NInterno.caract)
-            (*t)->NO.NInterno.Esq = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Esq,i,idDoc);
-        else
-            (*t)->NO.NInterno.Dir = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Dir,i,idDoc);
-        return (*t);
-    }
+        if(strcmp((*t)->NO.Chave,k) < 0){
+          
+          return CriaNoInt(i,t , &p,char_diferente);
+        }
+        else if(strcmp((*t)->NO.Chave,k) > 0){
+          return CriaNoInt(i,&p , t,char_diferente);
+
+        }
+        return NULL;
+  
+}else if(i < (*t)->NO.NInterno.Index){
+  p = CriaNoExt(k,idDoc);
+  if(k[i] < char_diferente){
+    return CriaNoInt(i,&p,t,char_diferente);
+  }else{
+    return CriaNoInt(i,t,&p,char_diferente);
+  }
+ 
+}else{
+int Index_Mudado = (*t)->NO.NInterno.Index;
+if(k[Index_Mudado] < (*t)->NO.NInterno.caract){
+  
+(*t)->NO.NInterno.Esq = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Esq,i,char_diferente,idDoc);
+
+
+}else{
+  (*t)->NO.NInterno.Dir = InsereEntre_Arvore(k,&(*t)->NO.NInterno.Dir,i,char_diferente,idDoc);
+
+}
+return (*t);
+
+
+}
 }
 
 Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
@@ -122,66 +135,55 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
     /*Funcao com o objetivo de inserir palavra na PATRICIA*/
 
   Arvore p;
-  int i;
-  if (*t == NULL) //Caso a arvore for nula, cria-se um No externo, que sera nesse caso o unico elemento da arvore
+  /*Talvez seja*/
+  if (*t == NULL){ //Caso a arvore for nula, cria-se um No externo, que sera nesse caso o unico elemento da arvore
   return (CriaNoExt(k,idDoc));
-  else 
+  }else 
     { p = *t;
+      int i;
+      char aux;
+
       while (!EExterno(p)) { //Enquanto nao encontrarmos um no externo seguimos na arvore
 
           /*Se o caractere na posicao index da palavra for menor do que o caractere no no interno analisado, 
          seguimos para o filho a esquerda */
-         if (Pegar_Caractere_Indice(p->NO.NInterno.Index,k) <= p->NO.NInterno.caract)
+         if (Pegar_Caractere_Indice(p->NO.NInterno.Index,k) < p->NO.NInterno.caract)
                 p = p->NO.NInterno.Esq;
-            else  //Caso contrario seguimos para o filho a direita
+          else if (Pegar_Caractere_Indice(p->NO.NInterno.Index,k) >= p->NO.NInterno.caract)
                 p = p->NO.NInterno.Dir;
+          else
+                p = p->NO.NInterno.Esq;
+
         }
       i= 0;
-    if(strlen(k)>strlen(p->NO.Chave)){ //Se a palavra analisada for maior do que a contida no No externo
+    if(strcmp(p->NO.Chave,k) == 0){
+       Insere(&p->tuplas,idDoc);
+       printf("\nPalavra %s ja existe na Arvore\n",p->NO.Chave);
+       return (*t);
 
-              /*Incrementamos o inteiro i ate i ser maior que o tamanho da palavra analisada e o caractere na posicao i da palavra 
-              analisada ser diferente do caractere na posicao i da palavra armazenada no No externo*/
+    }else{
+            printf("%s-%s",p->NO.Chave,k);
 
-            while ((i <=(int) strlen(k)) && (Pegar_Caractere_Indice(i, k) == Pegar_Caractere_Indice(i, p->NO.Chave))) 
-                i++;
-        
-              if (i >=(int) strlen(k)){ //Se i for maior do que o tamanho da palavra analisada, a palavra ja esta na arvore
-                //printf("Chave ja esta na arvore");
-
-                //Função que insere ou incrementa na tupla
-                Insere(&p->tuplas,idDoc);
-                //Insere(&((*t))->NO.tuplas,idDoc);
-            
-                return (*t);
-              }
-              else { //Caso contrario, inserimos ela na arvore
-                
-                return (InsereEntre_Arvore(k, t, i,idDoc));
-              }
-        } 
-     else{  //Caso a palavra analisada ser menor que a contida no No externo
-
-	        /*Incrementamos o inteiro i ate i ser maior que o tamanho da palavra analisada e o caractere na posicao i da palavra 
-            analisada ser diferente do caractere na posicao i da palavra armazenada no No externo*/
-
-              while ((i <= (int)strlen(p->NO.Chave)) && (Pegar_Caractere_Indice(i, k) == Pegar_Caractere_Indice(i, p->NO.Chave))) 
-                i++;
-        
-              if (i >= (int)strlen(p->NO.Chave)){ //Se i for maior do que o tamanho da palavra analisada, a palavra ja esta na arvore
-                //printf("Chave esta na arvore");
-                Insere(&p->tuplas,idDoc);
-
-                //Insere(&((*t))->NO.tuplas,idDoc);
-                return (*t);
-              }
-            else {
-                return (InsereEntre_Arvore(k, t, i,idDoc));  //Caso contrario, inserimos ela na arvore
+      char char_diferente;
+      int menor_tamanho = (strlen(k) < strlen(p->NO.Chave)) ? strlen(k) : strlen(p->NO.Chave);
+      for(i = 0; i <= menor_tamanho; i++){
+        if(k[i] != p->NO.Chave[i]){
+            if(k[i] < p->NO.Chave[i]){
+              char_diferente = p->NO.Chave[i];
+              break;
+            }else{
+              char_diferente = k[i];
+              break;
             }
+
         }
-
-
+      }
+    return (InsereEntre_Arvore(k, t, i,char_diferente,idDoc)); 
 
     }
+    
+    }
+    
 
 }
 void printPalavra(Arvore no) {
@@ -193,8 +195,6 @@ void printPalavra(Arvore no) {
     else if(no->nt == Externo){
         printf("Chave:%s ",no->NO.Chave);
         Imprime_lista(&no->tuplas);
-        
-        
     }
     
 }
@@ -205,12 +205,13 @@ void Ordem(Arvore ap)
 
     if(ap == NULL)
         return;
-    if(!EExterno(ap))
+    if(EInterno(ap))
         Ordem(ap->NO.NInterno.Esq);
     printPalavra(ap);
-    if(!EExterno(ap))
+    if(EInterno(ap))
         Ordem(ap->NO.NInterno.Dir);
 }
+
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc){
 
 	/*Funcao auxiliar com o objetivo de inserir uma palavra na Patricia, recebendo o endereco da Arvore em si 
@@ -219,7 +220,7 @@ void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc){
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
   *raiz= Insere_Arvore(chave,raiz, idDoc); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
-
+ 
 
 }
 Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
