@@ -4,7 +4,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <string.h>
-#include "Tad_lista/lista.h"
+#include "../Tad_documento/documento.h"
 #define D               8   /* depende de ChaveTipo */
 #define MAX_WORD_LENGHT 30 //Numero maximo de caracteres de uma palavra
 typedef  char * ChaveTipo;

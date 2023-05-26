@@ -10,9 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc06fa56-3793-459d-9e83-ffe0847a7694" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Tad_documento/documentoAntigo.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tad_documento/documentoAntigo.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teste" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tad_Patricia/Patricia.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_Patricia/Patricia.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tad_Patricia/Patricia.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_Patricia/Patricia.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_busca/busca.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_busca/busca.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_busca/busca.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_busca/busca.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tad_documento/documento.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tad_documento/documento.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.h" afterDir="false" />
     </list>
@@ -57,6 +61,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
@@ -64,10 +69,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tad_documento" />
       <recent name="$PROJECT_DIR$/Tad_Patricia" />
     </key>
   </component>
-  <component name="RunManager" selected="C/C++ File.testquik.c">
+  <component name="RunManager" selected="C/C++ File.teste.c">
     <configuration name="buscaTermo.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="buscaTermo.c" CONFIG_NAME="buscaTermo.c">
       <option name="sourceFile" value="buscaTermo.c" />
       <method v="2">
@@ -80,6 +86,12 @@
         <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="teste.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="teste.c" CONFIG_NAME="teste.c">
+      <option name="sourceFile" value="Tad_busca/teste.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="testquik.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="testquik.c" CONFIG_NAME="testquik.c">
       <option name="sourceFile" value="testquik.c" />
       <method v="2">
@@ -88,6 +100,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="C/C++ File.teste.c" />
         <item itemvalue="C/C++ File.testquik.c" />
         <item itemvalue="C/C++ File.main.c" />
         <item itemvalue="C/C++ File.buscaTermo.c" />
@@ -113,6 +126,8 @@
       <workItem from="1684541471283" duration="8765000" />
       <workItem from="1684614764537" duration="3904000" />
       <workItem from="1684698055986" duration="14687000" />
+      <workItem from="1685059023580" duration="3233000" />
+      <workItem from="1685062828924" duration="6951000" />
     </task>
     <servers />
   </component>

@@ -14,9 +14,10 @@ typedef struct Busca{
 }TBusca;
 
 int InicializaBusca(TBusca * busca);
-int InsereBusca(TBusca * busca, int idDoc, double relevancia);
 int Busca_vazia(TBusca * busca);
-int ImprimeBusca(TBusca * busca);
+int InsereBuscaOrdenado(TBusca * busca, int idDoc, double relevancia);
+void ImprimeBusca(TBusca * busca);
+int quantidadeDocs(Tdocumento * doc);
+int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* busca);
 
-
-
+//precisa ter uma função que preenche o tad documento
