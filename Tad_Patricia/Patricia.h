@@ -4,7 +4,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <string.h>
-#include "../Tad_documento/documento.h"
+#include "Tad_lista/lista.h"
 #define D               8   /* depende de ChaveTipo */
 #define MAX_WORD_LENGHT 30 //Numero maximo de caracteres de uma palavra
 typedef  char * ChaveTipo;
@@ -35,16 +35,15 @@ typedef struct PatNo {
 /*--------------------------Prototipos--------------------------*/
 char Pegar_Caractere_Indice(int index, ChaveTipo k);
 short EExterno(Arvore p);
+short EInterno(Arvore p);
 void Inicializar_Arvore(Arvore *p);
 Arvore CriaNoInt(int i, Arvore *Esq,  Arvore *Dir, char caract);
 Arvore CriaNoExt(ChaveTipo k,int idDoc);
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t);
-Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,int IdDoc);
+Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,char char_diferente,int idDoc);
 Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int IdDoc);
 void printPalavra(Arvore no);
 void Ordem(Arvore ap);
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc);
 Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
-double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc);
-double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);
 /*--------------------------Prototipos--------------------------*/
