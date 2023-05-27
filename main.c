@@ -1,3 +1,5 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
+
 #include "Tad_busca/busca.h"
 
 //? gcc .\main.c .\Tad_busca\busca.c .\Tad_busca\busca.h .\Tad_documento\documento.c .\Tad_documento\documento.h .\Tad_lista\lista.c .\Tad_lista\lista.h .\Tad_Patricia\Patricia.c .\Tad_Patricia\Patricia.h -o runner_final
@@ -88,3 +90,4 @@ int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
     fclose(arq);
     return 0;
 }
+
