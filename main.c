@@ -1,6 +1,6 @@
 #include "Tad_busca/busca.h"
 
-//? gcc .\main_novo.c .\Tad_busca\busca.c .\Tad_busca\busca.h .\Tad_documento\documento.c .\Tad_documento\documento.h .\Tad_lista\lista.c .\Tad_lista\lista.h .\Tad_Patricia\Patricia.c .\Tad_Patricia\Patricia.h -o runner_final
+//? gcc .\main.c .\Tad_busca\busca.c .\Tad_busca\busca.h .\Tad_documento\documento.c .\Tad_documento\documento.h .\Tad_lista\lista.c .\Tad_lista\lista.h .\Tad_Patricia\Patricia.c .\Tad_Patricia\Patricia.h -o runner_final
 
 
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
@@ -10,7 +10,6 @@ int main(){
     Arvore raiz;
     Tdocumento documento;
     TBusca busca;
-    
     FILE * arq;
 
     //cabecalhos da main
@@ -21,17 +20,11 @@ int main(){
     int index_convertido;
 
 
-    //Funcoes de inicializaçao
-
+    // ? Funcao de inicializaçao
     Inicializa_geral(&raiz, &documento, &busca);
-    // //! ISOLAR=========
-    // Inicializar_Arvore(raiz);
-    // inicializaDoc(documento);
-    // InicializaBusca(busca);
-    // //! ISOLAR +++++++
 
     printf("Digite o path do arquivo:\n");
-    //scanf("%s",&path_arquivo);
+    // ! scanf("%s",&path_arquivo);
     strcpy(path_arquivo,"Data/sem_pontuacao_reduzido.txt");
 
     if (arq == NULL){
