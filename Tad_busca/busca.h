@@ -3,7 +3,6 @@
 #include "../Tad_Patricia/Patricia.h"
 
 typedef struct CelulaBusca * ApontaBusca;
-
 typedef struct CelulaBusca {
     int idDoc;                  // Identificador do documento
     double relevancia;          // Relevância do documento em relação à busca
@@ -24,9 +23,10 @@ int Busca_vazia(TBusca * busca);
 int InsereBuscaOrdenado(TBusca * busca, int idDoc, double relevancia);
 
 // Imprime os resultados da busca
-void ImprimeBusca(TBusca * busca);
+void ImprimeBusca(TBusca * busca, Tdocumento * doc);
 
 // Realiza o cálculo da relevância para cada documento e insere na lista de busca
 int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento * doc, TBusca * busca);
 
-//precisa ter uma função que preenche o tad documento
+// Remove a célula de busca
+int removeBusca(TBusca * busca, ApontaBusca aux);

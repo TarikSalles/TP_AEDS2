@@ -1,6 +1,7 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
 #include "Patricia.h"
+
 void Inicializar_Arvore(Arvore *p){
 	/*Funcao para inicializar a Patricia */
 	*p = NULL;
@@ -137,8 +138,8 @@ return (*t); //Retorna nova arvore
 }
 }
 
-Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
-
+Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc, char* nomeDoc, Tdocumento* doc){
+    // Passar nome do doc como parametro
     /*Funcao com o objetivo de inserir palavra na PATRICIA*/
 
   Arvore p; //Arvore auxiliar
@@ -182,13 +183,11 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc){
               char_diferente = k[i]; //caractere diferencial recebe char na posicao i da palavra
               break; //Sai do loop
             }
-
         }
       }
-    return (InsereEntre_Arvore(k, t, i,char_diferente,idDoc)); //Retorna o resultado de InsereEntre_Arvore  passando t como arvore
-
+      insereDoc(doc, idDoc, nomeDoc);
+      return (InsereEntre_Arvore(k, t, i,char_diferente,idDoc)); //Retorna o resultado de InsereEntre_Arvore  passando t como arvore
     }
-    
     }
     
 
@@ -219,14 +218,14 @@ void Ordem(Arvore ap)
         Ordem(ap->NO.NInterno.Dir);
 }
 
-void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc){
+void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc, char *nomeDoc, Tdocumento *doc){
 
 	/*Funcao auxiliar com o objetivo de inserir uma palavra na Patricia, recebendo o endereco da Arvore em si 
     e um vetor constante char(String) como parametro */
 
   ChaveTipo chave = (ChaveTipo) malloc(MAX_WORD_LENGHT); //Aloca memoria para armazenar a palavra dentro do elemento chave
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
-  *raiz= Insere_Arvore(chave,raiz, idDoc); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
+  *raiz= Insere_Arvore(chave,raiz, idDoc, nomeDoc, doc); //Chamamos a funcao Insere e atribuimos seu retorno(Nova Arvore) para a Arvore antiga
  
 
 }
@@ -240,16 +239,17 @@ Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
   return Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
 }
+
 double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     char* token = strtok(entradaBusca, " ");
     int i;
     Arvore aux;
     float peso = 0;
     while(token != NULL){
-        aux = Pesquisa(token, &raiz);
+        aux = Pesquisa_Palavra_Arvore(raiz, token);
         if(aux) {
             // condicional para verificar em qual tupla esta o documento que estou acessando
-            peso += pesoTermo(contaNumeroOcorrencias(&(aux->NO.lista), idDoc), numDocs, numeroTuplas(aux->NO.lista));
+            peso += pesoTermo(Numero_Ocorrencias_Especifico(&(aux->tuplas), idDoc), numDocs, Numero_Total_Tuplas(&(aux->tuplas)));
             //peso += pesoTermo(aux->NO.lista.lista[i].num_ocorrencias, numDocs, aux->NO.lista.fim);
         }
         else
@@ -259,7 +259,8 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     return peso;
 }
 
-float pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
+double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
     if (numOcorrencias == 0)
         return 0;
+    return (numOcorrencias * (log(numDocs) / docsComTermo));
 }

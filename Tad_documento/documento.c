@@ -3,25 +3,23 @@
 #include "documento.h"
 
 int inicializaDoc(Tdocumento* doc){
-    doc->primeiro = (ApontaCelulaDoc)malloc(sizeof(celulaDoc));
+    doc->primeiro = (ApontaCelulaDoc)malloc(sizeof(CDoc));
     if(doc->primeiro){
         doc->ultimo = doc->primeiro;
         doc->ultimo->prox = NULL;
     }
     return 1;
+    // Inicializa a lista de documentos
+    // Cria a célula de cabeça vazia e retorna 1 em caso de sucesso
 }
-
-// Inicializa a lista de documentos
-// Cria a célula de cabeça vazia e retorna 1 em caso de sucesso
 
 int docVazio(Tdocumento* doc){
     return doc->primeiro == doc->ultimo;
+    // Verifica se a lista de documentos está vazia
+    // Retorna 1 se estiver vazia, caso contrário retorna 0
 }
 
-// Verifica se a lista de documentos está vazia
-// Retorna 1 se estiver vazia, caso contrário retorna 0
-
-int insereDoc(Tdocumento*doc, int idDoc, char* nomeDoc){
+int insereDoc(Tdocumento* doc, int idDoc, char* nomeDoc){
     ApontaCelulaDoc aux;
     aux = doc->primeiro->prox;
     while(aux){
@@ -37,14 +35,13 @@ int insereDoc(Tdocumento*doc, int idDoc, char* nomeDoc){
     ApontaCelulaDoc novaCelula = (ApontaCelulaDoc)malloc(sizeof(CDoc));
     novaCelula->idDoc = idDoc;
     strcpy(novaCelula->nomeDoc, nomeDoc);
-    novaCelula->totalTermos = 0;
+    novaCelula->totalTermos = 1;
 
     doc->ultimo->prox = novaCelula;
     doc->ultimo = doc->ultimo->prox;
     doc->ultimo->prox = NULL;
 
     // Insere uma nova célula de documento no final da lista
-
 }
 
 int quantidadeDocs(Tdocumento * doc){
@@ -55,10 +52,9 @@ int quantidadeDocs(Tdocumento * doc){
         aux = aux->prox;
     }
     return quantidade;
+    // Calcula a quantidade de documentos na lista encadeada
+    // Percorre a lista e incrementa um contador a cada iteração
 }
-
-// Calcula a quantidade de documentos na lista encadeada
-// Percorre a lista e incrementa um contador a cada iteração
 
 void imprimeDoc(Tdocumento* doc, int idDoc){
     ApontaCelulaDoc aux = doc->primeiro->prox;
@@ -69,24 +65,5 @@ void imprimeDoc(Tdocumento* doc, int idDoc){
         }
         aux = aux->prox;
     }
+    // Percorre a lista de documentos e imprime o nome do documento associado ao ID
 }
-
-// Imprime as informações de um documento com base em seu ID
-// Percorre a lista de documentos até encontrar o documento com o ID fornecido
-// e imprime o ID e o nome do documento
-
-/*
-int insereDoc(Tdocumento* doc, int idDoc, char* nomeDoc, int totalTermos){
-    ApontaCelulaDoc novaCelula = (ApontaCelulaDoc)malloc(sizeof(CDoc));
-
-    novaCelula->idDoc = idDoc;
-    strcpy(novaCelula->nomeDoc, nomeDoc);
-    novaCelula->totalTermos = totalTermos;
-
-    doc->ultimo->prox = novaCelula;
-    doc->ultimo = doc->ultimo->prox;
-    doc->ultimo->prox = NULL;
-
-    return 0;
-}
- */

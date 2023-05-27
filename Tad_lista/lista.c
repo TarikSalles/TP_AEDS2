@@ -30,8 +30,7 @@ int Insere(Tlista * lista, int index){
     lista->ultimo->index_arquivo = index;
     lista->ultimo->num_ocorrencias = 1;
     lista->ultimo->prox = NULL;
-    return 0;
-        
+    return 1;
 }
 
 int Imprime_lista(Tlista * lista){
@@ -87,7 +86,7 @@ int Numero_Ocorrencias_Especifico(Tlista * lista, int idDoc){
         }
         aux = aux->prox;
     }
-    printf("Nao ha ocorrencias no doc %d", idDoc);
+    //printf("Nao ha ocorrencias no doc %d", idDoc);
     return 0;
 }
 

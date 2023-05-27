@@ -10,7 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc06fa56-3793-459d-9e83-ffe0847a7694" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_Patricia/Patricia.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_Patricia/Patricia.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_Patricia/Patricia.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_Patricia/Patricia.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_busca/busca.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_busca/busca.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_busca/busca.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_busca/busca.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_documento/documento.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_documento/documento.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tad_lista/lista.c" beforeDir="false" afterPath="$PROJECT_DIR$/Tad_lista/lista.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste.c" beforeDir="false" afterPath="$PROJECT_DIR$/teste.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,41 +48,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;alvaro&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "alvaro",
+    "last_opened_file_path": "/home/alvaro/Documentos/GitHub/TP_AEDS2/main.c",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Tad_documento" />
       <recent name="$PROJECT_DIR$/Tad_Patricia" />
     </key>
   </component>
-  <component name="RunManager" selected="C/C++ File.teste.c">
+  <component name="RunManager" selected="C/C++ File.main.c">
     <configuration name="buscaTermo.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="buscaTermo.c" CONFIG_NAME="buscaTermo.c">
       <option name="sourceFile" value="buscaTermo.c" />
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="main.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="main.c" CONFIG_NAME="main.c">
-      <option name="sourceFile" value="main.c" />
+    <configuration name="main.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="lista.c main.cmain.c" CONFIG_NAME="main.c">
+      <option name="sourceFile" value="Tad_busca/busca.c Tad_Patricia/Patricia.c Tad_documento/documento.c Tad_lista/lista.c main.cmain.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="teste.c (1)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TP_AEDS2" TARGET_NAME="teste.c" CONFIG_NAME="teste.c">
+      <option name="sourceFile" value="teste.c" />
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
@@ -90,11 +106,19 @@
         <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="C/C++ File.buscaTermo.c" />
+      <item itemvalue="C/C++ File.main.c" />
+      <item itemvalue="C/C++ File.teste.c" />
+      <item itemvalue="C/C++ File.teste.c (1)" />
+      <item itemvalue="C/C++ File.testquik.c" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="C/C++ File.main.c" />
+        <item itemvalue="C/C++ File.teste.c (1)" />
         <item itemvalue="C/C++ File.teste.c" />
         <item itemvalue="C/C++ File.testquik.c" />
-        <item itemvalue="C/C++ File.main.c" />
         <item itemvalue="C/C++ File.buscaTermo.c" />
       </list>
     </recent_temporary>
@@ -121,6 +145,7 @@
       <workItem from="1685059023580" duration="3233000" />
       <workItem from="1685062828924" duration="7595000" />
       <workItem from="1685132503912" duration="496000" />
+      <workItem from="1685133025685" duration="10887000" />
     </task>
     <servers />
   </component>

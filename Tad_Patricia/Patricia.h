@@ -1,10 +1,8 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include <stdlib.h> 
-#include <time.h>
-#include <stdio.h>
-#include <string.h>
-#include "Tad_lista/lista.h"
+#include "../Tad_documento/documento.h"
+#include <math.h>
+
 #define D               8   /* depende de ChaveTipo */
 #define MAX_WORD_LENGHT 30 //Numero maximo de caracteres de uma palavra
 typedef  char * ChaveTipo;
@@ -28,7 +26,7 @@ typedef struct PatNo {
       ChaveTipo Chave; //No externo armazena a palavra em si, com um tamanho fixo(MAX_WORD_LENGHT) 
 
   } NO;
-    Tlista tuplas;
+  Tlista tuplas;
 
 } PatNo;
 
@@ -41,9 +39,11 @@ Arvore CriaNoInt(int i, Arvore *Esq,  Arvore *Dir, char caract);
 Arvore CriaNoExt(ChaveTipo k,int idDoc);
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t);
 Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,char char_diferente,int idDoc);
-Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int IdDoc);
+Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int IdDoc, char* nomeDoc, Tdocumento* doc);
 void printPalavra(Arvore no);
 void Ordem(Arvore ap);
-void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc);
+void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc, char* nomeDoc, Tdocumento* doc);
 Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
+double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc);
+double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);
 /*--------------------------Prototipos--------------------------*/
