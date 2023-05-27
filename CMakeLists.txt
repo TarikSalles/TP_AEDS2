@@ -19,8 +19,8 @@ if (PKG_CONFIG_FOUND)
         add_executable(application "")
         target_sources(application
         PUBLIC 
-            ${CMAKE_CURRENT_LIST_DIR}/src/main.c 
-            ${CMAKE_CURRENT_LIST_DIR}/src/gtk.c
+            ${CMAKE_CURRENT_LIST_DIR}/mainGTK-teste.c
+            ${CMAKE_CURRENT_LIST_DIR}/sources/gtk.c
         )
         target_link_libraries(application PUBLIC ${GTK_LIBRARIES})
         add_definitions(${GTK_CFLAGS} ${GTK_CFLAGS_OTHER})

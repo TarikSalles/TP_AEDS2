@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
 
-#include "busca.h"
+#include "../headers/busca.h"
 
 int InicializaBusca(TBusca* busca){
     printf("InicializaBusca\n");

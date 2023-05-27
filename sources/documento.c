@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
 
-#include "documento.h"
+#include "../headers/documento.h"
 
 int inicializaDoc(Tdocumento* doc){
     doc->primeiro = (ApontaCelulaDoc)malloc(sizeof(CDoc));

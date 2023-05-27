@@ -1,7 +1,7 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "../Tad_documento/documento.h"
-#include <math.h>
+#include "documento.h"
+
 
 #define D               8   /* depende de ChaveTipo */
 #define MAX_WORD_LENGHT 30 //Numero maximo de caracteres de uma palavra

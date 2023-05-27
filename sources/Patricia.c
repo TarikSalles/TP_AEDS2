@@ -1,6 +1,7 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "Patricia.h"
+#include "../headers/Patricia.h"
+
 
 void Inicializar_Arvore(Arvore *p){
 	/*Funcao para inicializar a Patricia */
@@ -199,7 +200,7 @@ void printPalavra(Arvore no) {
     if(no == NULL)
         printf("No Nulo\n");
     else if(no->nt == Externo){
-        printf("Chave:%s ",no->NO.Chave);
+        printf("\nChave:%s \n",no->NO.Chave);
         Imprime_lista(&no->tuplas);
     }
     

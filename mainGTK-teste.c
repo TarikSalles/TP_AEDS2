@@ -1,4 +1,4 @@
-#include "gtk.h"
+#include "headers/gtk.h"
 
 
 int main(int argc, char *argv[])

@@ -1,5 +1,5 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
-#include "../Tad_lista/lista.h"
+#include "lista.h"
 
 typedef struct celulaDoc * ApontaCelulaDoc;
 typedef struct celulaDoc{

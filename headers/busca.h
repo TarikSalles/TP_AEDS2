@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
 
-#include "../Tad_Patricia/Patricia.h"
+#include "Patricia.h"
 
 typedef struct CelulaBusca * ApontaBusca;
 typedef struct CelulaBusca {

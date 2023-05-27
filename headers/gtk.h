@@ -1,17 +1,18 @@
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <gtk/gtk.h>
 
-
-
+#include "busca.h"
 
 typedef struct dadosGTK{
     
     const char *path_atual;
-    char *pesq_relevancia;
+    const char *pesq_relevancia;
     int verif_patricia;
+    
+    
+    //TDocumento *doc;
+  //  TBusca *busca;
+   // Arvore raiz;
 
 }dadosGTK;
 
