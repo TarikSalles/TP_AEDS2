@@ -24,6 +24,8 @@ int main(){
 
     Ordem(raiz);
 
+    printf("\nBusca por palavra: carro\n");
+    calculoRelevancia(raiz, "carro", &documento, &busca);
     return 0;
 }
 
@@ -36,7 +38,7 @@ int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca){
 
 int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
     //cabecalhos de constantes na main
-    char path_arquivo[300], string[50] , string_tratada[50], string_nome_arquivo[50];
+    char path_arquivo[300], string[150] , string_tratada[150], string_nome_arquivo[150];
     int index_do_arquivo = 0, contador = -1, tamanho_string, c; //auxilia na verificação de qual arquivo se está lendo
     /** Explicações:
      * string = guarda as strings provenientes da leitura do arquivo
@@ -63,7 +65,7 @@ int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
 
         if (string[tamanho_string-1] == ';'){
             //Cada arquivo tem 3 partes: Index, titulo e abstract. Isso explica o porque do mod 3
-            contador = (contador + 1)%3; 
+            contador = (contador + 1)%4; 
 
             //remove o ';' da string:
             for (c = 0; c < (tamanho_string - 1); c++){
@@ -81,6 +83,10 @@ int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
                 strcat(string_nome_arquivo, string);
                 strcat(string_nome_arquivo, ".txt");
                 index_do_arquivo = atoi(string);
+                continue;
+            }
+            if (contador == 1){
+                strcpy(string_nome_arquivo, string);
                 continue;
             }
 

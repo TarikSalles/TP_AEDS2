@@ -1,4 +1,4 @@
-1;  Obstacle-Aware On-Track Bus Routing; The great advances achieved in very large scale integrated technology cause an increase in the difficulty for routing the buses through;
-2; Toward Nanometric Scale Integration An Automatic Routing Approach for NML Circuits; In the recent years many technologies have been studied in order to take place as a; 
-5; Improving Rule Based and Equivalent Decision Simplifications for Bloat Control in Genetic Programming Using a Dynamic Operator;  Bloat is a common issue regarding Genetic;
-4; Ropper A Placement and Routing Framework for Field-Coupled Nanotechnologies; Field-Coupled Nanocomputing technologies are the subject of extensive research to;
+1; POCVitor_Hugo.pdf; Obstacle-Aware On-Track Bus Routing; The great advances achieved in very large scale integrated technology cause an increase in the difficulty for routing the buses through;
+2; Pedro_Arthur_TowardNanometrics.pdf; Toward Nanometric Scale Integration An Automatic Routing Approach for NML Circuits; In the recent years many technologies have been studied in order to take place as a; 
+5; tcc_final_gustavoviegas.pdf; Improving Rule Based and Equivalent Decision Simplifications for Bloat Control in Genetic Programming Using a Dynamic Operator;  Bloat is a common issue regarding Genetic;
+4; POC-Ruan_2019_2.pdf; Ropper A Placement and Routing Framework for Field-Coupled Nanotechnologies; Field-Coupled Nanocomputing technologies are the subject of extensive research to;
