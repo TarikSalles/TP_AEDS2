@@ -4,3 +4,4 @@ arquivo_teste.txt
 gtk.c
 meson.build
 build
+sources/Patricia.c

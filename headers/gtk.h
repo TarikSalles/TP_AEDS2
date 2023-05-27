@@ -10,9 +10,9 @@ typedef struct dadosGTK{
     int verif_patricia;
     
     
-    //TDocumento *doc;
-  //  TBusca *busca;
-   // Arvore raiz;
+    Tdocumento doc;
+    TBusca busca;
+    Arvore raiz;
 
 }dadosGTK;
 
@@ -29,6 +29,7 @@ typedef struct
     GtkWidget *bt_voltar;
     GtkWidget *bt_voltar2;
     GtkWidget *bt_voltar3;
+    GtkWidget *bt_listar;
     GtkWidget *bt_MontarPatricia;
     GtkWidget *bt_ImprimirPatricia;
     GtkWidget *bt_RealizarBusca;
@@ -66,7 +67,12 @@ void on_bt_pesqDoc_clicked (GtkButton *bt_pesqDoc, void *data) ;
 
 void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) ;
 
+void on_bt_listar_clicked (GtkButton *bt_listar, void *data) ;
+
 void mensagem(const char *texto_principal, const char *texto_secundario, const char *icone);
 
 
 char *selecionar_arquivo() ;
+
+int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
+int Leitura(const char *path, Arvore * raiz, Tdocumento * documento);

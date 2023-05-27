@@ -21,6 +21,10 @@ if (PKG_CONFIG_FOUND)
         PUBLIC 
             ${CMAKE_CURRENT_LIST_DIR}/mainGTK-teste.c
             ${CMAKE_CURRENT_LIST_DIR}/sources/gtk.c
+            ${CMAKE_CURRENT_LIST_DIR}/sources/busca.c
+            ${CMAKE_CURRENT_LIST_DIR}/sources/documento.c
+            ${CMAKE_CURRENT_LIST_DIR}/sources/lista.c
+            ${CMAKE_CURRENT_LIST_DIR}/sources/Patricia.c
         )
         target_link_libraries(application PUBLIC ${GTK_LIBRARIES})
         add_definitions(${GTK_CFLAGS} ${GTK_CFLAGS_OTHER})
