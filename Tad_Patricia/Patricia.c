@@ -199,7 +199,7 @@ void printPalavra(Arvore no) {
     if(no == NULL)
         printf("No Nulo\n");
     else if(no->nt == Externo){
-        printf("Chave:%s ",no->NO.Chave);
+        printf("\nChave:%s \n",no->NO.Chave);
         Imprime_lista(&no->tuplas);
     }
     

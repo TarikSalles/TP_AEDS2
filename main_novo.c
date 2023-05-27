@@ -1,18 +1,20 @@
 #include "Tad_busca/busca.h"
+//? gcc .\main_novo.c .\Tad_busca\busca.c .\Tad_busca\busca.h .\Tad_documento\documento.c .\Tad_documento\documento.h .\Tad_lista\lista.c .\Tad_lista\lista.h .\Tad_Patricia\Patricia.c .\Tad_Patricia\Patricia.h -o runner_final
+
 
 //Inicializa_geral(Arvore * raiz, Tdocumento * doc, Tbusca * busca);
 
 int main(){
     //Cabecalho dos tads
-    // Arvore raiz;
-    // Tdocumento documento;
-    // TBusca busca;
+    Arvore raiz;
+    Tdocumento documento;
+    TBusca busca;
     
     FILE * arq;
 
     //cabecalhos da main
-    char path_arquivo[300];
-    char string[50] , string_aux[50];
+    char path_arquivo[300], string[50] , string_aux[50], string_nome_arquivo[50];
+    const char string_fixa_nome_arquivo[50] = "arquivo";
     int index_do_arquivo = 0;
     int contador = -1, tam, c; //auxilia na verificação de qual arquivo se está lendo
     int index_convertido;
@@ -22,9 +24,9 @@ int main(){
 
     // Inicializa_geral(&raiz, &doc, &busca);
     // //! ISOLAR=========
-    // Inicializar_Arvore(&raiz);
-    // InicializaDoc(&doc);
-    // InicializaBusca(&busca);
+    Inicializar_Arvore(&raiz);
+    inicializaDoc(&documento);
+    InicializaBusca(&busca);
     // //! ISOLAR +++++++
 
     printf("Digite o path do arquivo:\n");
@@ -50,15 +52,18 @@ int main(){
             string_aux[tam-1] = '\0';
             strcpy(string, string_aux);
             if (contador == 0){
+                strcpy(string_nome_arquivo, "arquivo");
+                strcat(string_nome_arquivo, string);
+                strcat(string_nome_arquivo, ".txt");
                 index_do_arquivo = atoi(string);
                 continue;
             }
 
         }
-        printf("string: %s \nindex: %d\n\n", string, index_do_arquivo);
+        //printf("string: %s \nindex: %d\n\n", string, index_do_arquivo);
+        Insere_Palavra_Arvore(&raiz, string , index_do_arquivo, string_nome_arquivo, &documento);
     }
-    //Insere_Palavra_Arvore(&raiz, "carro", 1, "arquivo1.txt", &documento);
-
+    Ordem(raiz);
 
     fclose(arq);
     return 0;
