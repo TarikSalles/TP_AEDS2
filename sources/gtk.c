@@ -418,6 +418,7 @@ char* Imprime_lista(Tlista * lista){
         if (i == 0){
             strcpy(stringCompleta,IdNovo);
             continue;
+            i++;
         }
         if (stringCompleta == NULL) {
             printf("Erro de alocação de memória!\n");
