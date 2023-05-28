@@ -226,6 +226,27 @@ void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) {
 }
 
 
+
+
+
+
+
+
+void on_bt_listar2_clicked (GtkButton *bt_listar2, void *data) {
+        AppWidgets *widgets = (AppWidgets *)data;
+        GtkListStore *modelo_armazenamento = widgets->liststore2;
+
+        printf("Clicou no botao Listar2\n");
+        gtk_list_store_clear(modelo_armazenamento);
+     //   Ordem2(widgets->interno->raiz, widgets);
+        
+        
+        
+
+        
+
+}
+
 void mensagem(const char *texto_principal, const char *texto_secundario, const char *icone) {
     GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, "%s", texto_principal);
     gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", texto_secundario);

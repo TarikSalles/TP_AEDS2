@@ -32,10 +32,12 @@ typedef struct
     GtkWidget *bt_listar;
     GtkWidget *bt_MontarPatricia;
     GtkWidget *bt_ImprimirPatricia;
+
     GtkWidget *bt_RealizarBusca;
 
     
     GtkListStore *liststore;
+    GtkListStore *liststore2;
     dadosGTK *interno;
 
 } AppWidgets;
@@ -69,6 +71,7 @@ void on_bt_pesqDoc_clicked (GtkButton *bt_pesqDoc, void *data) ;
 void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) ;
 
 void on_bt_listar_clicked (GtkButton *bt_listar, void *data) ;
+void on_bt_listar2_clicked (GtkButton *bt_listar, void *data) ;
 
 void mensagem(const char *texto_principal, const char *texto_secundario, const char *icone);
 

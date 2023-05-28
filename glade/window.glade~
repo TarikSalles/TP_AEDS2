@@ -10,6 +10,14 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="liststore2">
+    <columns>
+      <!-- column-name Palavra -->
+      <column type="gchararray"/>
+      <!-- column-name IDs -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="can-focus">False</property>
     <child>
@@ -260,8 +268,6 @@
                 <property name="shadow-type">in</property>
                 <property name="min-content-width">200</property>
                 <property name="min-content-height">250</property>
-                <property name="propagate-natural-width">True</property>
-                <property name="propagate-natural-height">True</property>
                 <child>
                   <object class="GtkTreeView" id="tv_impressaoPatricia1">
                     <property name="visible">True</property>
@@ -273,6 +279,9 @@
                     <property name="model">liststore1</property>
                     <property name="search-column">0</property>
                     <property name="enable-grid-lines">both</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection"/>
+                    </child>
                     <child>
                       <object class="GtkTreeViewColumn">
                         <property name="title" translatable="yes">Palavra</property>
@@ -452,7 +461,6 @@
             <property name="resize-mode">immediate</property>
             <property name="orientation">vertical</property>
             <property name="spacing">10</property>
-            <property name="homogeneous">True</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
@@ -466,40 +474,51 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTreeView">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="model">liststore1</property>
-                <property name="search-column">0</property>
-                <property name="enable-grid-lines">both</property>
-                <child internal-child="selection">
-                  <object class="GtkTreeSelection"/>
-                </child>
+                <property name="resize-mode">immediate</property>
+                <property name="shadow-type">in</property>
+                <property name="min-content-width">200</property>
+                <property name="min-content-height">250</property>
                 <child>
-                  <object class="GtkTreeViewColumn">
-                    <property name="title" translatable="yes">Palavra</property>
+                  <object class="GtkTreeView" id="tv_impressaoRelevancia">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="hscroll-policy">natural</property>
+                    <property name="vscroll-policy">natural</property>
+                    <property name="model">liststore2</property>
+                    <property name="search-column">0</property>
+                    <property name="enable-grid-lines">both</property>
                     <child>
-                      <object class="GtkCellRendererText"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
+                      <object class="GtkTreeViewColumn">
+                        <property name="title" translatable="yes">Palavra</property>
+                        <child>
+                          <object class="GtkCellRendererText"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkTreeViewColumn">
-                    <property name="title" translatable="yes">IDs</property>
                     <child>
-                      <object class="GtkCellRendererText"/>
-                      <attributes>
-                        <attribute name="text">1</attribute>
-                      </attributes>
+                      <object class="GtkTreeViewColumn">
+                        <property name="title" translatable="yes">IDs</property>
+                        <child>
+                          <object class="GtkCellRendererText"/>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                          </attributes>
+                        </child>
+                      </object>
                     </child>
                   </object>
                 </child>
               </object>
               <packing>
-                <property name="expand">True</property>
+                <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
@@ -528,11 +547,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="bt_listar1">
+                  <object class="GtkButton" id="bt_listar2">
                     <property name="label" translatable="yes">Listar</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_bt_listar2_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
