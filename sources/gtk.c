@@ -152,9 +152,12 @@ void on_bt_listar_clicked(GtkButton *bt_listar, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
         GtkListStore *modelo_armazenamento = widgets->liststore;
 
-        printf("Clicou no botao Listar\n");
         gtk_list_store_clear(modelo_armazenamento);
-        Ordem(widgets->interno->raiz, widgets);
+        
+        printf("Clicou no botao Listar\n");
+        
+        
+        Ordem(widgets->interno->raiz, data);
         
         
         
@@ -356,6 +359,7 @@ void Ordem(Arvore ap, void *data)
     printPalavra(ap, data);
     if(EInterno(ap))
         Ordem(ap->NO.NInterno.Dir, data);
+
 }
 
 void printPalavra(Arvore no, void *data) { 
@@ -381,15 +385,15 @@ void printPalavra(Arvore no, void *data) {
         
 
         gtk_list_store_append(modelo_armazenamento, &iter);
-        const char *Ids= Imprime_lista(&no->tuplas);
+        
+        
+        
+        //const char *Ids= Imprime_lista(&no->tuplas);
 
         
-        gtk_list_store_set(modelo_armazenamento, &iter, 
-                            0, no->NO.Chave,
-                            1, Ids,
-                            -1);
+        gtk_list_store_set(modelo_armazenamento, &iter, 0, no->NO.Chave,-1);
 
-        free(Ids);
+       
         }
     
 }
@@ -404,7 +408,7 @@ char* Imprime_lista(Tlista * lista){
     
 
     
-   char IdNovo[100];
+    char IdNovo[15];
     char* stringCompleta = NULL;
     size_t tamanhoTotal = 0;
 
