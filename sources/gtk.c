@@ -363,7 +363,7 @@ void printPalavra(Arvore no, void *data) {
     
     GtkListStore *modelo_armazenamento = widgets->liststore;
     GtkTreeIter *iter;
-    const char *Ids;
+    
 
     /* Funcao com o objetivo de imprimir todas as palavras dentro da Patricia*/
 

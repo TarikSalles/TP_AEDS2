@@ -80,7 +80,10 @@ char *selecionar_arquivo() ;
 
 void printPalavra(Arvore no, void* data);
 void Ordem(Arvore ap, void* data);
+<<<<<<< HEAD
 
+=======
+>>>>>>> dan-teste
 char* Imprime_lista(Tlista * lista);
 
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
