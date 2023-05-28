@@ -77,7 +77,8 @@ char *selecionar_arquivo() ;
 
 void printPalavra(Arvore no, void* data);
 void Ordem(Arvore ap, void* data);
-int Imprime_lista(Tlista * lista, void *data, GtkTreeIter *iter);
+
+char* Imprime_lista(Tlista * lista);
 
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
 int Leitura(const char *path, Arvore * raiz, Tdocumento * documento);
