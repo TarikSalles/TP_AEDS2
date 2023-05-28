@@ -5,7 +5,7 @@ typedef struct celulaDoc * ApontaCelulaDoc;
 typedef struct celulaDoc{
     int idDoc;                                  // Identificador do documento
     int totalTermos;                            // No momento da inserção da palavra, irá incrementar o total de termos distintos no documento
-    char nomeDoc[50];
+    char nomeDoc[150];
     ApontaCelulaDoc prox;
 } CDoc;
 

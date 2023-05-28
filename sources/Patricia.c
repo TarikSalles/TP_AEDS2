@@ -1,7 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "../headers/Patricia.h"
-
+#include "Patricia.h"
 
 void Inicializar_Arvore(Arvore *p){
 	/*Funcao para inicializar a Patricia */
@@ -193,6 +192,31 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc, char* nomeDoc, Tdocument
     
 
 }
+void printPalavra(Arvore no) { 
+
+    /* Funcao com o objetivo de imprimir todas as palavras dentro da Patricia*/
+
+    if(no == NULL)
+        printf("No Nulo\n");
+    else if(no->nt == Externo){
+        printf("Chave:%s ",no->NO.Chave);
+        Imprime_lista(&no->tuplas);
+    }
+    
+}
+
+void Ordem(Arvore ap)
+{
+	/*Funcao com o objetivo de imprimir todas as palavras contidas na Patricia em ordem */
+
+    if(ap == NULL)
+        return;
+    if(EInterno(ap))
+        Ordem(ap->NO.NInterno.Esq);
+    printPalavra(ap);
+    if(EInterno(ap))
+        Ordem(ap->NO.NInterno.Dir);
+}
 
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc, char *nomeDoc, Tdocumento *doc){
 
@@ -214,32 +238,4 @@ Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
   strcpy(chave,palavra); //Funcao de string.h que passa a palavra para dentro do elemento chave
   return Pesquisa_Arvore(chave,raiz); //Chamamos a funcao Pesquisa
 
-}
-
-double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
-    char* token = strtok(entradaBusca, " ");
-    int i;
-    Arvore aux;
-    float peso = 0;
-    while(token != NULL){
-        aux = Pesquisa_Palavra_Arvore(raiz, token);
-        if(aux) {
-            // condicional para verificar em qual tupla esta o documento que estou acessando
-            peso += pesoTermo(Numero_Ocorrencias_Especifico(&(aux->tuplas), idDoc), numDocs, Numero_Total_Tuplas(&(aux->tuplas)));
-            //peso += pesoTermo(aux->NO.lista.lista[i].num_ocorrencias, numDocs, aux->NO.lista.fim);
-        }
-        else
-            peso += 0;
-        token = strtok(NULL, " ");
-    }
-    return peso;
-}
-
-double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
-    if (numOcorrencias == 0)
-        return 0;
-
-
-    //o log(numDocs) foi substitutido por 2 ->Testes
-    return (numOcorrencias * (2 / docsComTermo));
 }

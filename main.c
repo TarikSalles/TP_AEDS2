@@ -22,7 +22,15 @@ int main(){
     Leitura(arq, &raiz, &documento);
 
 
-    Ordem(raiz);
+    //Ordem(raiz);
+
+    calculoRelevancia(raiz, "carro", &documento, &busca);
+    calculoRelevancia(raiz, "the", &documento, &busca);
+    calculoRelevancia(raiz, "great", &documento, &busca);
+    calculoRelevancia(raiz, "a", &documento, &busca);
+    calculoRelevancia(raiz, "is", &documento, &busca);
+    calculoRelevancia(raiz, "ropper is a", &documento, &busca);
+    calculoRelevancia(raiz, "is", &documento, &busca);
 
     return 0;
 }
@@ -36,7 +44,7 @@ int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca){
 
 int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
     //cabecalhos de constantes na main
-    char path_arquivo[300], string[50] , string_tratada[50], string_nome_arquivo[50];
+    char path_arquivo[300], string[150] , string_tratada[150], string_nome_arquivo[150];
     int index_do_arquivo = 0, contador = -1, tamanho_string, c; //auxilia na verificação de qual arquivo se está lendo
     /** Explicações:
      * string = guarda as strings provenientes da leitura do arquivo
@@ -63,27 +71,45 @@ int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
 
         if (string[tamanho_string-1] == ';'){
             //Cada arquivo tem 3 partes: Index, titulo e abstract. Isso explica o porque do mod 3
-            contador = (contador + 1)%3; 
+            contador = (contador + 1)%4; 
 
             //remove o ';' da string:
             for (c = 0; c < (tamanho_string - 1); c++){
-                string_tratada[c] = string[c];
+                if(isalnum(string[c])){
+                    string_tratada[c] = tolower(string[c]);
+                }
+                else{
+                    string_tratada[c] = string[c];
+                }
             }
             //Substitui o ';' pelo '\0'
-            string_tratada[tamanho_string-1] = '\0';
 
             //Atualiza string para ser a string tratada
             strcpy(string, string_tratada);
+            string[tamanho_string-1] = '\0';
 
             //caso esteja no estado de leitura do index:
             if (contador == 0){
-                strcpy(string_nome_arquivo, "arquivo");
-                strcat(string_nome_arquivo, string);
-                strcat(string_nome_arquivo, ".txt");
                 index_do_arquivo = atoi(string);
                 continue;
             }
+            if (contador == 1){
+                strcpy(string_nome_arquivo, string);
+                continue;
+            }
 
+        }
+        else{
+            for (c = 0; c < (tamanho_string); c++){
+                if(isalnum(string[c])){
+                    string_tratada[c] = tolower(string[c]);
+                }
+                else{
+                    string_tratada[c] = string[c];
+                }
+            }
+            strcpy(string,string_tratada);
+            string[tamanho_string] = '\0';
         }
         Insere_Palavra_Arvore(raiz, string , index_do_arquivo, string_nome_arquivo, documento);
     }
