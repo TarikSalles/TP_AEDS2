@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
 
     // Conseguir o endereco da window da janela principal
 
+
     widgets->stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
     widgets->window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
 

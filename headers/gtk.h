@@ -81,3 +81,4 @@ int Imprime_lista(Tlista * lista, void *data, GtkTreeIter *iter);
 
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
 int Leitura(const char *path, Arvore * raiz, Tdocumento * documento);
+
