@@ -2,7 +2,7 @@
 
 #include "headers/busca.h"
 
-//? gcc .\main.c .\Tad_busca\busca.c .\Tad_busca\busca.h .\Tad_documento\documento.c .\Tad_documento\documento.h .\Tad_lista\lista.c .\Tad_lista\lista.h .\Tad_Patricia\Patricia.c .\Tad_Patricia\Patricia.h -o runner_final
+//? gcc .\headers\lista.h .\headers\documento.h .\headers\busca.h .\headers\Patricia.h .\sources\busca.c .\sources\documento.c .\sources\lista.c .\sources\Patricia.c .\main.c -o run
 
 
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
@@ -22,7 +22,7 @@ int main(){
     Leitura(arq, &raiz, &documento);
 
 
-    //Ordem(raiz);
+    Ordem(raiz);
 
     calculoRelevancia(raiz, "carro", &documento, &busca);
     calculoRelevancia(raiz, "the", &documento, &busca);

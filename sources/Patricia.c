@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "Patricia.h"
+#include "..\headers\Patricia.h"
 
 void Inicializar_Arvore(Arvore *p){
 	/*Funcao para inicializar a Patricia */
