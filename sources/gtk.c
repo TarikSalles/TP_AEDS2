@@ -1,7 +1,5 @@
 #include "../headers/gtk.h"
 
-
-
  void on_bt_pesquisar_clicked (GtkButton *bt_pesquisar, void *data) {
 
     AppWidgets *widgets = (AppWidgets *)data;
@@ -402,66 +400,33 @@ void printPalavra(Arvore no, void *data) {
 
 
 char* Imprime_lista(Tlista * lista){
-    
-    
-
-    
-
-    
+    int i = 0;
     char IdNovo[15];
     char* stringCompleta = NULL;
     size_t tamanhoTotal = 0;
-
-    
-    
-    
-
     Aponta_lista aux;
     if (Lista_vazia(lista)){
         //printf("Essa lista e vazia\n");
         return NULL;
     }
-
     aux = lista->primeiro->prox;
-
-    
-    
-
     while(aux != NULL){
-       
-
        //funcao que formata e guarda os dados em uma string
-
-         
         sprintf(IdNovo, " <%d,%d>", aux->num_ocorrencias,aux->index_arquivo);
-        
-        size_t tamanhoID = strlen(IdNovo);
-        
-        char* novaString = realloc(stringCompleta, tamanhoTotal + tamanhoID + 1);
-        
-        
-        if (novaString == NULL) {
+        aponta = (char * )realloc(aponta, sizeof(char)*strlen(str));
+        if (c == 0){
+            strcpy(aponta,str);
+            continue;
+            i++;
+        }
+        if (aponta == NULL) {
             printf("Erro de alocação de memória!\n");
             free(stringCompleta);
             return NULL;
         }
-
-        stringCompleta = novaString;
-
-        // Concatena a nova palavra na string completa
-        strcpy(stringCompleta + tamanhoTotal, IdNovo);
-
-        tamanhoTotal += tamanhoID;
-    
-        
-
-       
-        
-
-
+        strcat(aponta, str);
         aux = aux->prox;
-
-
+        i++;
     }
 
     
