@@ -385,7 +385,7 @@ void printPalavra(Arvore no, void *data) {
     
     GtkListStore *modelo_armazenamento = widgets->liststore;
     GtkTreeIter *iter;
-    
+    char *Ids = NULL;
 
     /* Funcao com o objetivo de imprimir todas as palavras dentro da Patricia*/
 
@@ -396,9 +396,6 @@ void printPalavra(Arvore no, void *data) {
     else if(no->nt == Externo){
         //printf("\nChave:%s \n",no->NO.Chave);
 
-        //Ids = Imprime_lista(&no->tuplas);
-        //strcpy(Ids, "Imprime_lista(&no->tuplas, data, iter)");
-        //fazer a variavel IDs receber o retorno da funcao Imprime_lista
         
         
 
@@ -406,53 +403,42 @@ void printPalavra(Arvore no, void *data) {
         
         
         
-        //const char *Ids= Imprime_lista(&no->tuplas);
 
         
-        gtk_list_store_set(modelo_armazenamento, &iter, 0, no->NO.Chave,-1);
+        gtk_list_store_set(modelo_armazenamento, &iter, 0, no->NO.Chave, -1);
 
-       
+        Ids = Imprime_lista(&no->tuplas);
+        gtk_list_store_set(modelo_armazenamento, &iter, 1, Ids, -1);
+
+       //libera memoria
+        free(Ids);
         }
     
 }
-
-
 
 
 char* Imprime_lista(Tlista * lista){
     char IdNovo[15];
-    char* stringCompleta = NULL;
-    Aponta_lista aux;
-    int i=0;
+    char stringCompleta[200] = {""};
+
+    char *stringRetorno;
+    Aponta_lista aux = lista->primeiro->prox;
     if (Lista_vazia(lista)){
         //printf("Essa lista e vazia\n");
         return NULL;
     }
-    aux = lista->primeiro->prox;
     while(aux != NULL){
        //funcao que formata e guarda os dados em uma string
-        sprintf(IdNovo, " <%d,%d>", aux->num_ocorrencias,aux->index_arquivo);
-        stringCompleta = (char * )realloc(stringCompleta, sizeof(char)*strlen(IdNovo));
-        if (i == 0){
-            strcpy(stringCompleta,IdNovo);
-            continue;
-            i++;
-        }
-        if (stringCompleta == NULL) {
-            printf("Erro de alocação de memória!\n");
-            free(stringCompleta);
-            return NULL;
-        }
+        sprintf(IdNovo, "<%d,%d> ", aux->num_ocorrencias,aux->index_arquivo);
         strcat(stringCompleta, IdNovo);
-
-        // A fins de depuracao:
-        printf("%s\n", stringCompleta);
         aux = aux->prox;
-        i++;
     }
-    
+
     //libera memoria das strings 
     //retorna a string com os dados formatados
-    return stringCompleta;
-}
+    strcat(stringCompleta, "\0");
 
+    stringRetorno = (char *)malloc(sizeof(char) * (strlen(stringCompleta) + 1));
+    strcpy(stringRetorno, stringCompleta);
+    return stringRetorno;
+}
