@@ -1,6 +1,6 @@
 // Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
-#include "..\headers\Patricia.h"
+#include "../headers/Patricia.h"
 
 void Inicializar_Arvore(Arvore *p){
 	/*Funcao para inicializar a Patricia */
@@ -192,31 +192,8 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc, char* nomeDoc, Tdocument
     
 
 }
-void printPalavra(Arvore no) { 
 
-    /* Funcao com o objetivo de imprimir todas as palavras dentro da Patricia*/
 
-    if(no == NULL)
-        printf("No Nulo\n");
-    else if(no->nt == Externo){
-        printf("Chave:%s ",no->NO.Chave);
-        Imprime_lista(&no->tuplas);
-    }
-    
-}
-
-void Ordem(Arvore ap)
-{
-	/*Funcao com o objetivo de imprimir todas as palavras contidas na Patricia em ordem */
-
-    if(ap == NULL)
-        return;
-    if(EInterno(ap))
-        Ordem(ap->NO.NInterno.Esq);
-    printPalavra(ap);
-    if(EInterno(ap))
-        Ordem(ap->NO.NInterno.Dir);
-}
 
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra,int idDoc, char *nomeDoc, Tdocumento *doc){
 

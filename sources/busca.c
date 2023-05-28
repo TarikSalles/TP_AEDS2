@@ -117,5 +117,5 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
 double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
     if (numOcorrencias == 0)
         return 0;
-    return (numOcorrencias * (log(numDocs) / docsComTermo));
+    return (numOcorrencias * (2/ docsComTermo));
 }

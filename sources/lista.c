@@ -121,17 +121,3 @@ int Numero_Ocorrencias_Especifico(Tlista * lista, int idDoc){
     return 0;
 }
 
-int Imprime_lista(Tlista * lista){
-    Aponta_lista aux;
-    if (Lista_vazia(lista)){
-        printf("Essa lista e vazia\n");
-        return 1;
-    }
-    aux = lista->primeiro->prox;
-    printf("Tuplas < qtde, idDoc >:\n");
-    while(aux != NULL){
-        printf("< %d, %d >\n", aux->num_ocorrencias,aux->index_arquivo );
-        aux = aux->prox;
-    }
-    return 0;
-}

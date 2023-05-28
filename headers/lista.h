@@ -29,7 +29,7 @@ int Lista_vazia(Tlista * lista);
 int Numero_Ocorrencias_Total(Tlista * lista);
 int Numero_Total_Tuplas(Tlista * lista);
 int Numero_Ocorrencias_Especifico(Tlista * lista, int idDoc);
-int Imprime_lista(Tlista * lista);
+
 
 // Eu preciso que verifique a tupla de acordo com o idDoc mandado
 // int contaNumeroOcorrencias(aux->NO.lista, idDoc) ?????

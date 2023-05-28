@@ -317,27 +317,45 @@ int Leitura(const char *path, Arvore * raiz, Tdocumento * documento){
 
         if (string[tamanho_string-1] == ';'){
             //Cada arquivo tem 3 partes: Index, titulo e abstract. Isso explica o porque do mod 3
-            contador = (contador + 1)%3; 
+            contador = (contador + 1)%4; 
 
             //remove o ';' da string:
             for (c = 0; c < (tamanho_string - 1); c++){
-                string_tratada[c] = string[c];
+                if(isalnum(string[c])){
+                    string_tratada[c] = tolower(string[c]);
+                }
+                else{
+                    string_tratada[c] = string[c];
+                }
             }
             //Substitui o ';' pelo '\0'
-            string_tratada[tamanho_string-1] = '\0';
 
             //Atualiza string para ser a string tratada
             strcpy(string, string_tratada);
+            string[tamanho_string-1] = '\0';
 
             //caso esteja no estado de leitura do index:
             if (contador == 0){
-                strcpy(string_nome_arquivo, "arquivo");
-                strcat(string_nome_arquivo, string);
-                strcat(string_nome_arquivo, ".txt");
                 index_do_arquivo = atoi(string);
                 continue;
             }
+            if (contador == 1){
+                strcpy(string_nome_arquivo, string);
+                continue;
+            }
 
+        }
+        else{
+            for (c = 0; c < (tamanho_string); c++){
+                if(isalnum(string[c])){
+                    string_tratada[c] = tolower(string[c]);
+                }
+                else{
+                    string_tratada[c] = string[c];
+                }
+            }
+            strcpy(string,string_tratada);
+            string[tamanho_string] = '\0';
         }
         Insere_Palavra_Arvore(raiz, string , index_do_arquivo, string_nome_arquivo, documento);
     }
