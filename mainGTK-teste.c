@@ -1,8 +1,8 @@
 #include "headers/gtk.h"
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
+    
     GtkBuilder *builder;
     AppWidgets *widgets = g_slice_new(AppWidgets);
 
@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
     widgets->bt_MontarPatricia = GTK_WIDGET(gtk_builder_get_object(builder, "bt_MontarPatricia"));
     widgets->bt_ImprimirPatricia = GTK_WIDGET(gtk_builder_get_object(builder, "bt_ImprimirPatricia"));
     widgets->bt_RealizarBusca = GTK_WIDGET(gtk_builder_get_object(builder, "bt_RealizarBusca"));
+    widgets->liststore = GTK_LIST_STORE(gtk_builder_get_object(builder, "liststore1"));
     
-
 
 
 

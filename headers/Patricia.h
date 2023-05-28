@@ -40,8 +40,7 @@ Arvore CriaNoExt(ChaveTipo k,int idDoc);
 Arvore Pesquisa_Arvore(ChaveTipo k, Arvore t);
 Arvore InsereEntre_Arvore(ChaveTipo k, Arvore *t, int i,char char_diferente,int idDoc);
 Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int IdDoc, char* nomeDoc, Tdocumento* doc);
-void printPalavra(Arvore no);
-void Ordem(Arvore ap);
+
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc, char* nomeDoc, Tdocumento* doc);
 Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
 double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc);

@@ -34,7 +34,7 @@ typedef struct
     GtkWidget *bt_ImprimirPatricia;
     GtkWidget *bt_RealizarBusca;
 
-
+    GtkListStore *liststore;
     dadosGTK *interno;
 
 } AppWidgets;
@@ -74,5 +74,7 @@ void mensagem(const char *texto_principal, const char *texto_secundario, const c
 
 char *selecionar_arquivo() ;
 
+void printPalavra(Arvore no, void* data);
+void Ordem(Arvore ap, void* data);
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
 int Leitura(const char *path, Arvore * raiz, Tdocumento * documento);

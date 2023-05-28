@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "lista.h": "c",
-        "documento.h": "c"
+        "documento.h": "c",
+        "gtk.h": "c"
     }
 }
