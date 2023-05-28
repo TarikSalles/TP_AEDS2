@@ -22,10 +22,16 @@ int main(){
     Leitura(arq, &raiz, &documento);
 
 
-    Ordem(raiz);
+    //Ordem(raiz);
 
-    printf("\nBusca por palavra: carro\n");
     calculoRelevancia(raiz, "carro", &documento, &busca);
+    calculoRelevancia(raiz, "the", &documento, &busca);
+    calculoRelevancia(raiz, "great", &documento, &busca);
+    calculoRelevancia(raiz, "a", &documento, &busca);
+    calculoRelevancia(raiz, "is", &documento, &busca);
+    calculoRelevancia(raiz, "ropper is a", &documento, &busca);
+    calculoRelevancia(raiz, "is", &documento, &busca);
+
     return 0;
 }
 

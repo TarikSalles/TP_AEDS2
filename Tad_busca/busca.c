@@ -86,8 +86,36 @@ int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* 
             InsereBuscaOrdenado(busca, aux->idDoc, relevancia);
         aux = aux->prox;
     }
+    printf("Resultado da busca para \"%s\":\n",entradaBusca);
     ImprimeBusca(busca, doc);
     // Realiza o cálculo da relevância para cada documento e insere na lista encadeada de busca
     // A relevância é calculada utilizando a função termo() e os resultados são inseridos em ordem na lista
     // Em seguida, os resultados são impressos utilizando a função ImprimeBusca()
+}
+
+double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
+    char palavra[50];
+    strcpy(palavra, entradaBusca);
+    char* token = strtok(palavra, " ");
+    int i;
+    Arvore aux;
+    float peso = 0;
+    while(token){
+        aux = Pesquisa_Palavra_Arvore(raiz, token);
+        if(aux) {
+            // condicional para verificar em qual tupla esta o documento que estou acessando
+            peso += pesoTermo(Numero_Ocorrencias_Especifico(&(aux->tuplas), idDoc), numDocs, Numero_Total_Tuplas(&(aux->tuplas)));
+            //peso += pesoTermo(aux->NO.lista.lista[i].num_ocorrencias, numDocs, aux->NO.lista.fim);
+        }
+        else
+            peso += 0;
+        token = strtok(NULL, " ");
+    }
+    return peso;
+}
+
+double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
+    if (numOcorrencias == 0)
+        return 0;
+    return (numOcorrencias * (log(numDocs) / docsComTermo));
 }

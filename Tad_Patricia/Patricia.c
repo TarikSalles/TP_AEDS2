@@ -240,27 +240,3 @@ Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra){
 
 }
 
-double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
-    char* token = strtok(entradaBusca, " ");
-    int i;
-    Arvore aux;
-    float peso = 0;
-    while(token != NULL){
-        aux = Pesquisa_Palavra_Arvore(raiz, token);
-        if(aux) {
-            // condicional para verificar em qual tupla esta o documento que estou acessando
-            peso += pesoTermo(Numero_Ocorrencias_Especifico(&(aux->tuplas), idDoc), numDocs, Numero_Total_Tuplas(&(aux->tuplas)));
-            //peso += pesoTermo(aux->NO.lista.lista[i].num_ocorrencias, numDocs, aux->NO.lista.fim);
-        }
-        else
-            peso += 0;
-        token = strtok(NULL, " ");
-    }
-    return peso;
-}
-
-double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
-    if (numOcorrencias == 0)
-        return 0;
-    return (numOcorrencias * (log(numDocs) / docsComTermo));
-}

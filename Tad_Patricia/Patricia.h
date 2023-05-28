@@ -44,6 +44,5 @@ void printPalavra(Arvore no);
 void Ordem(Arvore ap);
 void Insere_Palavra_Arvore(Arvore * raiz, const char *palavra, int IdDoc, char* nomeDoc, Tdocumento* doc);
 Arvore Pesquisa_Palavra_Arvore(Arvore raiz, const char *palavra);
-double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc);
-double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);
+
 /*--------------------------Prototipos--------------------------*/

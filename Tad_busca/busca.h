@@ -30,3 +30,6 @@ int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento * doc, TBusca 
 
 // Remove a célula de busca
 int removeBusca(TBusca * busca, ApontaBusca aux);
+
+double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc);
+double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);
