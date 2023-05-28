@@ -402,71 +402,37 @@ void printPalavra(Arvore no, void *data) {
 
 
 char* Imprime_lista(Tlista * lista){
-    
-    
-
-    
-
-    
     char IdNovo[15];
     char* stringCompleta = NULL;
-    size_t tamanhoTotal = 0;
-
-    
-    
-    
-
     Aponta_lista aux;
+    int i=0;
     if (Lista_vazia(lista)){
         //printf("Essa lista e vazia\n");
         return NULL;
     }
-
     aux = lista->primeiro->prox;
-
-    
-    
-
     while(aux != NULL){
-       
-
        //funcao que formata e guarda os dados em uma string
-
-         
         sprintf(IdNovo, " <%d,%d>", aux->num_ocorrencias,aux->index_arquivo);
-        
-        size_t tamanhoID = strlen(IdNovo);
-        
-        char* novaString = realloc(stringCompleta, tamanhoTotal + tamanhoID + 1);
-        
-        
-        if (novaString == NULL) {
+        stringCompleta = (char * )realloc(stringCompleta, sizeof(char)*strlen(IdNovo));
+        if (i == 0){
+            strcpy(stringCompleta,IdNovo);
+            continue;
+        }
+        if (stringCompleta == NULL) {
             printf("Erro de alocação de memória!\n");
             free(stringCompleta);
             return NULL;
         }
+        strcat(stringCompleta, IdNovo);
 
-        stringCompleta = novaString;
-
-        // Concatena a nova palavra na string completa
-        strcpy(stringCompleta + tamanhoTotal, IdNovo);
-
-        tamanhoTotal += tamanhoID;
-    
-        
-
-       
-        
-
-
+        // A fins de depuracao:
+        printf("%s\n", stringCompleta);
         aux = aux->prox;
-
-
+        i++;
     }
-
     
-    //libera memoria das strings
-    
+    //libera memoria das strings 
     //retorna a string com os dados formatados
     return stringCompleta;
 }
