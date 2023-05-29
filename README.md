@@ -12,7 +12,7 @@ Para executar o codigo, é necessário realizar os seguintes passos:
     <li>Entrar na pasta build: </br><code>cd build</code></li>
     <li>Executar o cmake la dentro: </br><code>cmake .. </code></li>
     <li>Executar o makefile gerado: </br><code>make</code></li>
-    <li>Entrar dentro da pasta bin e executar a aplicação: </br><code>cd bin </br>./application</code></li>
+    <li>Entrar dentro da pasta bin e executar a aplicação: </br><code>cd bin </code></br><code>./application</code></li>
 </ul>
 
 ## Integrantes
