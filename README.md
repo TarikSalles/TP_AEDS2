@@ -2,7 +2,7 @@
 2° Trabalho Prático da disciplina de Aeds II
 
 
-## Execução do código
+## Execução do código manualmente
 
 Para executar o codigo, é necessário realizar os seguintes passos:
 
