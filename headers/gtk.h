@@ -42,21 +42,21 @@ typedef struct
     dadosGTK *interno;
 
 } AppWidgets;
-
- void on_bt_pesquisar_clicked (GtkButton *bt_pesquisar, void *data);
-//crie uma funcao que verifica se o entrypath e o endereco de um arquivo valido
 int verificaPath(const char *path);
 
+void on_bt_pesquisar_clicked (GtkButton *bt_pesquisar, void *data);
 
 
- void on_bt_confirmar_clicked (GtkButton *bt_pesquisar, void *data) ;
 
- void on_bt_voltar_clicked (GtkButton *bt_voltar1, void *data) ;
+
+void on_bt_confirmar_clicked (GtkButton *bt_pesquisar, void *data) ;
+
+void on_bt_voltar_clicked (GtkButton *bt_voltar1, void *data) ;
 
  
 void on_bt_MontarPatricia_clicked (GtkButton *bt_MontarPatricia, void *data) ;
 
-//criar uma funcao que verifica se a arvore ja foi montada
+
 int verificaArvoreMontada(int verificado);
 
 

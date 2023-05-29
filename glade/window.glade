@@ -140,6 +140,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Menu</property>
+                <attributes>
+                  <attribute name="font-desc" value="Sarai Bold Italic 24"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
