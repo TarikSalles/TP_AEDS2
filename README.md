@@ -5,7 +5,7 @@
 ## Execução do código automatica
 <ul>
     <li>Abrir a pasta TP_AEDS2 dentro do terminal</li>
-    <li>Executar o comando </br><code>make</code></li>
+    <li>Executar o comando abaixo:</br><code>make</code></li>
 </ul>
 
 
