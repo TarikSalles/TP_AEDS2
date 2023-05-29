@@ -2,6 +2,13 @@
 2° Trabalho Prático da disciplina de Aeds II
 
 
+## Execução do código automatica
+<ul>
+    <li>Abrir a pasta TP_AEDS2 dentro do terminal</li>
+    <li>Executar o comando </br><code>make</code></li>
+</ul>
+
+
 ## Execução do código manualmente
 
 Para executar o codigo, é necessário realizar os seguintes passos:
@@ -14,6 +21,7 @@ Para executar o codigo, é necessário realizar os seguintes passos:
     <li>Executar o makefile gerado: </br><code>make</code></li>
     <li>Entrar dentro da pasta bin e executar a aplicação: </br><code>cd bin </code></br><code>./application</code></li>
 </ul>
+
 
 ## Integrantes
 
