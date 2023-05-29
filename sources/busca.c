@@ -65,12 +65,11 @@ int removeBusca(TBusca* busca, ApontaBusca aux){
     // Remove uma célula da lista de busca
 }
 
-
 double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     char palavra[50];
     int i=0,c;
     for (i = 0; entradaBusca[i] != ' '; i++){
-        palavra[i] = entradaBusca[i];
+        palavra[i] = tolower(entradaBusca[i]);
         if (entradaBusca[i] == '\0'){
             break;
         }
@@ -90,7 +89,7 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
             return peso;
         }
         for (i = i+1, c = 0; entradaBusca[i] != ' '; i++, c++){
-            palavra[c] = entradaBusca[i];
+            palavra[c] = tolower(entradaBusca[i]);
             if (entradaBusca[i] == '\0'){
                 break;
             }
