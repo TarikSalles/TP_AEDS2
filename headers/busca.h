@@ -17,7 +17,7 @@ typedef struct Busca {
 int InicializaBusca(TBusca * busca);
 
 // Verifica se a lista de busca está vazia
-int Busca_vazia(TBusca * busca);
+int BuscaVazia(TBusca * busca);
 
 // Insere uma nova célula de busca na lista mantendo a ordem crescente de relevância
 int InsereBuscaOrdenado(TBusca * busca, int idDoc, double relevancia);

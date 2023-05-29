@@ -77,6 +77,7 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     Arvore aux;
     float peso = 0;
     while(palavra){
+        printf("palavra: %s\n", palavra);
         aux = Pesquisa_Palavra_Arvore(raiz, palavra);
         if(aux) {
             // condicional para verificar em qual tupla esta o documento que estou acessando
