@@ -44,14 +44,13 @@
             <property name="resize-mode">immediate</property>
             <property name="orientation">vertical</property>
             <property name="spacing">9</property>
-            <property name="homogeneous">True</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Pesquisa - Patricia</property>
+                <property name="label" translatable="yes">Arvore PATRICIA</property>
                 <attributes>
-                  <attribute name="font-desc" value="Sans Bold Italic 18"/>
+                  <attribute name="font-desc" value="Sree Krushnadevaraya 18"/>
                 </attributes>
               </object>
               <packing>
@@ -61,17 +60,32 @@
               </packing>
             </child>
             <child>
+              <object class="GtkImage">
+                <property name="width-request">12</property>
+                <property name="height-request">12</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="pixbuf">ethernet (1).png</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkSearchEntry" id="entry_path">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="primary-icon-name">edit-find-symbolic</property>
                 <property name="primary-icon-activatable">False</property>
                 <property name="primary-icon-sensitive">False</property>
+                <property name="placeholder-text" translatable="yes">Clique em Abrir para Selecionar o arquivo desejado</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -118,7 +132,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -140,6 +154,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Menu</property>
+                <attributes>
+                  <attribute name="font-desc" value="Sree Krushnadevaraya 24"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -249,6 +266,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Impressão da Patricia</property>
+                <attributes>
+                  <attribute name="font-desc" value="Sree Krushnadevaraya 18"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -374,6 +394,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Pesquisa de Termos</property>
+                <attributes>
+                  <attribute name="font-desc" value="Sree Krushnadevaraya 15"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -388,6 +411,7 @@
                 <property name="primary-icon-name">edit-find-symbolic</property>
                 <property name="primary-icon-activatable">False</property>
                 <property name="primary-icon-sensitive">False</property>
+                <property name="placeholder-text" translatable="yes">Digite um ou mais termos para fazer a busca</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -463,6 +487,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">ListaRelevancia</property>
+                <attributes>
+                  <attribute name="font-desc" value="Sree Krushnadevaraya 15"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
