@@ -4,35 +4,23 @@
 #include "../headers/gtk.h"
 
 
-
+    //Configura evento de pesquisar arquivo, da primeira tela do gtk
  void on_bt_pesquisar_clicked (GtkButton *bt_pesquisar, void *data) {
 
     AppWidgets *widgets = (AppWidgets *)data;
     
-    //copia o valor do entry para uma string
-   // const char *path = gtk_entry_get_text(GTK_ENTRY(widgets->entry_path));
 
    const char *path = selecionar_arquivo();
-    //imprime o valor da variavel
-
-    //substituir o valor do entry pelo valor da string
     gtk_entry_set_text(GTK_ENTRY(widgets->entry_path), path);
     
 
-    //usa a funcao message para imprimir o valor da entrada
-    
-
-    
-    
-
-
-    //exibir mensagem na tela, informando que o documento foi encontrado
-    
     
 
 
  }
-//crie uma funcao que verifica se o entrypath e o endereco de um arquivo valido
+
+
+//Verifica se o endereco path do arquivo é valido
 int verificaPath(const char *path){
     //verificar se o arquivo existe
     FILE *arquivo = fopen(path, "r");
@@ -44,17 +32,17 @@ int verificaPath(const char *path){
 }
 
 
-
+//Configura o evento para quando o usuario apertar ok dentro da primeira tela
  void on_bt_confirmar_clicked (GtkButton *bt_pesquisar, void *data) {
 
     AppWidgets *widgets = (AppWidgets *)data;
     //pegar o valor do entry_path e usar a funcao message para imprimir o arquivo
     const char *path = gtk_entry_get_text(GTK_ENTRY(widgets->entry_path));
     
-    //fazer a variavel path_atual dentro de dadopegar o valor de path
+    //fazer a variavel path_atual dentro de dadosinternos pegar o valor de path
    widgets->interno->path_atual = path;
 
-    //Usar a funcao inicializaPrograma para a avariavel widgets->path_atual, se a funcao retornar NULL, exibir mensagem de erro
+    //Usar a funcao inicializaPrograma para a variavel widgets->path_atual, se a funcao retornar NULL, exibir mensagem de erro
     if (verificaPath(widgets->interno->path_atual) == 0|| strcmp(widgets->interno->path_atual, "") == 0) {
         mensagem("Arquivo nao encontrado", "O arquivo nao foi encontrado, tente novamente", "dialog-error");
         return;
@@ -73,14 +61,11 @@ int verificaPath(const char *path){
     }
     
 
-
-    //mensagem("Arquivo encontrado", widgets->path_atual, "dialog-information");
-
-    //trocar o gtkstack para view_menu
    
 
  }
 
+//Configura Evento para quando o botão voltar for apertado pelo usuario, fazendo com que ele volte para a o menu
  void on_bt_voltar_clicked (GtkButton *bt_voltar1, void *data) {
     
 
@@ -91,6 +76,8 @@ int verificaPath(const char *path){
  }
 
  
+
+ //Configura Evento que Monta a Arvore Patricia, fazendo a leitura do arquivo, e armazenando esses valores dentro dos dadosinternos do GTK
 void on_bt_MontarPatricia_clicked (GtkButton *bt_MontarPatricia, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
         int verificado;
@@ -125,6 +112,9 @@ int verificaArvoreMontada(int verificado){
     }
 }
 
+
+//Verifica se a arvore esta montada, e limpa a tabela de impressão do GTK
+
 void on_bt_ImprimirPatricia_clicked(GtkButton *bt_ImprimirPatricia, void *data) {
         
         AppWidgets *widgets = (AppWidgets *)data;
@@ -146,6 +136,7 @@ void on_bt_ImprimirPatricia_clicked(GtkButton *bt_ImprimirPatricia, void *data) 
 
 }
 
+//quando o usuario aperta o botao lista, dentro da tela Imprimir Patricia, eh chamada a funcao que coloca os dados de impressao
 void on_bt_listar_clicked(GtkButton *bt_listar, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
         GtkListStore *modelo_armazenamento = widgets->liststore;
@@ -164,7 +155,7 @@ void on_bt_listar_clicked(GtkButton *bt_listar, void *data) {
 }
 
 
-
+//Configura um evento que entra dentro da tela de realizar busca quando o usuario aperta o botao
 
 void on_bt_RealizarBusca_clicked (GtkButton *bt_RealizarBusca, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
@@ -183,6 +174,7 @@ void on_bt_RealizarBusca_clicked (GtkButton *bt_RealizarBusca, void *data) {
 
 }
 
+//Configura um evento para quando o usuario aperta o botao localizar, e faz com que a aplicação volte a tela inicial
 
 void on_bt_pesqDoc_clicked (GtkButton *bt_pesqDoc, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
@@ -197,7 +189,7 @@ void on_bt_pesqDoc_clicked (GtkButton *bt_pesqDoc, void *data) {
 }
 
 
-
+//Configura um evento que pega o valor da entrada da busca
 void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) {
          AppWidgets *widgets = (AppWidgets *)data;
         const char *pesq;
@@ -229,6 +221,7 @@ void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) {
 
 
 
+//Quando o usuario o botao listar, dentro da tela de imprimir reelevancia, o codigo irá chamar a funcao calculoRelevancia que ira imprimir na tela os dados em ordem
 
 void on_bt_listar2_clicked (GtkButton *bt_listar2, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
@@ -246,6 +239,7 @@ void on_bt_listar2_clicked (GtkButton *bt_listar2, void *data) {
 
 }
 
+//cria funcao que coloca uma mensagem de aviso na tela
 void mensagem(const char *texto_principal, const char *texto_secundario, const char *icone) {
     GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, "%s", texto_principal);
     gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", texto_secundario);
@@ -258,6 +252,8 @@ void mensagem(const char *texto_principal, const char *texto_secundario, const c
     gtk_widget_destroy(dialog);
 }
 
+
+//janela de dialogo que permite o usuario selecionar o arquivo desejado
 char *selecionar_arquivo() {
     GtkWidget *dialog;
     GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
@@ -393,7 +389,7 @@ void printPalavra(Arvore no, void *data) {
     if(no == NULL)
         return;
     else if(no->nt == Externo){
-        //printf("\nChave:%s \n",no->NO.Chave);
+        
 
         
         
@@ -429,7 +425,7 @@ char* Imprime_lista(Tlista * lista){
 
     Aponta_lista aux = lista->primeiro->prox;
     if (Lista_vazia(lista)){
-        //printf("Essa lista e vazia\n");
+        
         return NULL;
     }
     while(aux != NULL){
@@ -447,6 +443,7 @@ char* Imprime_lista(Tlista * lista){
     strcpy(stringRetorno, stringCompleta);
     return stringRetorno;
 }
+
 
 int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* busca, void *data){
     double relevancia;
