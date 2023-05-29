@@ -12,20 +12,24 @@
   </object>
   <object class="GtkListStore" id="liststore2">
     <columns>
-      <!-- column-name ID_Documento -->
-      <column type="gint"/>
-      <!-- column-name Nome_Documento -->
+      <!-- column-name Palavra -->
       <column type="gchararray"/>
-      <!-- column-name Relevancia -->
-      <column type="gdouble"/>
+      <!-- column-name IDs -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can-focus">False</property>
     <child>
       <object class="GtkStack" id="stack">
+        <property name="width-request">400</property>
+        <property name="height-request">250</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="margin-start">8</property>
+        <property name="margin-end">8</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <property name="hhomogeneous">False</property>
@@ -38,12 +42,14 @@
             <property name="resize-mode">immediate</property>
             <property name="orientation">vertical</property>
             <property name="spacing">9</property>
-            <property name="homogeneous">True</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Pesquisa - Patricia</property>
+                <attributes>
+                  <attribute name="font-desc" value="Sans Bold Italic 18"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -110,6 +116,18 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="pixbuf">../../../../Imagens/Capturas de tela/Captura de tela de 2023-05-28 23-28-27.png</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -456,6 +474,9 @@
           </packing>
         </child>
         <child>
+          <placeholder/>
+        </child>
+        <child>
           <object class="GtkBox" id="view_relevanciaImprimir">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -463,11 +484,12 @@
             <property name="resize-mode">immediate</property>
             <property name="orientation">vertical</property>
             <property name="spacing">10</property>
+            <property name="baseline-position">top</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Lista Relevancia</property>
+                <property name="label" translatable="yes">ListaRelevancia</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -484,7 +506,7 @@
                 <property name="min-content-width">200</property>
                 <property name="min-content-height">250</property>
                 <child>
-                  <object class="GtkTreeView" id="tv_impressaoRelevancia">
+                  <object class="GtkTreeView" id="tv_impressaoPatricia2">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
@@ -499,25 +521,23 @@
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn">
-                        <property name="title" translatable="yes">ID Documento</property>
+                        <property name="title" translatable="yes">Palavra</property>
                         <child>
                           <object class="GtkCellRendererText"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
                         </child>
                       </object>
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn">
-                        <property name="title" translatable="yes">Nome Documento</property>
+                        <property name="title" translatable="yes">IDs</property>
                         <child>
                           <object class="GtkCellRendererText"/>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn">
-                        <property name="title" translatable="yes">Relevancia</property>
-                        <child>
-                          <object class="GtkCellRendererText"/>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                          </attributes>
                         </child>
                       </object>
                     </child>
@@ -537,7 +557,7 @@
                 <property name="halign">center</property>
                 <property name="resize-mode">immediate</property>
                 <child>
-                  <object class="GtkButton" id="bt_voltar3">
+                  <object class="GtkButton" id="bt_voltar1">
                     <property name="label">gtk-go-back</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
@@ -571,14 +591,14 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="name">view_relevanciaImprimir</property>
             <property name="title" translatable="yes">page0</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>

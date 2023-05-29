@@ -40,18 +40,7 @@ int InsereBuscaOrdenado(TBusca* busca, int idDoc, double relevancia) {
     // Insere uma nova célula na lista encadeada de busca em ordem decrescente de relevância
 }
 
-void ImprimeBusca(TBusca* busca, Tdocumento* doc) {
-    ApontaBusca aux = busca->primeiro->prox;
 
-    while (aux != NULL) {
-        imprimeDoc(doc, aux->idDoc);
-        printf(" Relevancia: %.2lf\n", aux->relevancia);
-        removeBusca(busca, aux);
-        aux = aux->prox;
-    }
-    // Percorre a lista de busca e imprime os resultados, juntamente com a relevância
-    // A função imprimeDoc() imprime informações do documento associado ao ID armazenado na célula de busca
-}
 
 int removeBusca(TBusca* busca, ApontaBusca aux){
     ApontaBusca remove;
@@ -76,32 +65,20 @@ int removeBusca(TBusca* busca, ApontaBusca aux){
     // Remove uma célula da lista de busca
 }
 
-int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* busca){
-    double relevancia;
-    int qtDocs = quantidadeDocs(doc);
-    ApontaCelulaDoc aux = doc->primeiro->prox;
-    while(aux){
-        relevancia = (1.0 / aux->totalTermos) * termo(raiz, entradaBusca, qtDocs, aux->idDoc);
-        if(relevancia > 0)
-            InsereBuscaOrdenado(busca, aux->idDoc, relevancia);
-        aux = aux->prox;
-    }
-    printf("Resultado da busca para \"%s\":\n",entradaBusca);
-    ImprimeBusca(busca, doc);
-    // Realiza o cálculo da relevância para cada documento e insere na lista encadeada de busca
-    // A relevância é calculada utilizando a função termo() e os resultados são inseridos em ordem na lista
-    // Em seguida, os resultados são impressos utilizando a função ImprimeBusca()
-}
 
 double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     char palavra[50];
-    strcpy(palavra, entradaBusca);
-    char* token = strtok(palavra, " ");
-    int i;
+    int i=0,c;
+    for (i = 0; entradaBusca[i] != ' '; i++){
+        palavra[i] = entradaBusca[i];
+        if (entradaBusca[i] == '\0'){
+            break;
+        }
+    }
     Arvore aux;
     float peso = 0;
-    while(token){
-        aux = Pesquisa_Palavra_Arvore(raiz, token);
+    while(palavra){
+        aux = Pesquisa_Palavra_Arvore(raiz, palavra);
         if(aux) {
             // condicional para verificar em qual tupla esta o documento que estou acessando
             peso += pesoTermo(Numero_Ocorrencias_Especifico(&(aux->tuplas), idDoc), numDocs, Numero_Total_Tuplas(&(aux->tuplas)));
@@ -109,7 +86,15 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
         }
         else
             peso += 0;
-        token = strtok(NULL, " ");
+        if (entradaBusca[i] == '\0'){
+            return peso;
+        }
+        for (i = i+1, c = 0; entradaBusca[i] != ' '; i++, c++){
+            palavra[c] = entradaBusca[i];
+            if (entradaBusca[i] == '\0'){
+                break;
+            }
+        }
     }
     return peso;
 }
@@ -117,5 +102,6 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
 double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
     if (numOcorrencias == 0)
         return 0;
-    return (numOcorrencias * (2/ docsComTermo));
+    printf("numOcorrencias: %d\n", numOcorrencias);
+    return (numOcorrencias * ( log10(numDocs) / docsComTermo));
 }

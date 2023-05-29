@@ -6,7 +6,7 @@
 typedef struct dadosGTK{
     
     const char *path_atual;
-    const char *pesq_relevancia;
+    char *pesq_relevancia;
     int verif_patricia;
     
     
@@ -85,3 +85,6 @@ char* Imprime_lista(Tlista * lista);
 int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
 int Leitura(const char *path, Arvore * raiz, Tdocumento * documento);
 
+int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento * doc, TBusca * busca, void *data);
+void ImprimeBusca(TBusca * busca, Tdocumento * doc, void *data);
+void imprimeDoc(Tdocumento* doc, int idDoc, void *data);

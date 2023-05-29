@@ -22,11 +22,6 @@ int Busca_vazia(TBusca * busca);
 // Insere uma nova célula de busca na lista mantendo a ordem crescente de relevância
 int InsereBuscaOrdenado(TBusca * busca, int idDoc, double relevancia);
 
-// Imprime os resultados da busca
-void ImprimeBusca(TBusca * busca, Tdocumento * doc);
-
-// Realiza o cálculo da relevância para cada documento e insere na lista de busca
-int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento * doc, TBusca * busca);
 
 // Remove a célula de busca
 int removeBusca(TBusca * busca, ApontaBusca aux);

@@ -26,7 +26,8 @@ if (PKG_CONFIG_FOUND)
             ${CMAKE_CURRENT_LIST_DIR}/sources/lista.c
             ${CMAKE_CURRENT_LIST_DIR}/sources/Patricia.c
         )
-        target_link_libraries(application PUBLIC ${GTK_LIBRARIES})
+        target_link_libraries(application PUBLIC ${GTK_LIBRARIES} m)
+        
         add_definitions(${GTK_CFLAGS} ${GTK_CFLAGS_OTHER})
     endif ()
 endif ()

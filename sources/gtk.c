@@ -183,6 +183,8 @@ void on_bt_RealizarBusca_clicked (GtkButton *bt_RealizarBusca, void *data) {
             
             printf("Arvore ja esta montada\nProximaTela\n");
             gtk_stack_set_visible_child_name(widgets->stack, "view_relevanciaPesq");
+            //limpar o gtkliststore
+            gtk_list_store_clear(widgets->liststore2);
         }
 
 }
@@ -210,6 +212,7 @@ void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) {
         pesq = gtk_entry_get_text(GTK_ENTRY(widgets->entry_relevancia));
 
         widgets->interno->pesq_relevancia = pesq;
+       
         printf("Clicou no botao pesqDoc\n");
 
         //verifica se a entry esta vazia
@@ -239,11 +242,13 @@ void on_bt_listar2_clicked (GtkButton *bt_listar2, void *data) {
         AppWidgets *widgets = (AppWidgets *)data;
         GtkListStore *modelo_armazenamento = widgets->liststore2;
 
-        printf("Clicou no botao Listar2\n");
+        
         gtk_list_store_clear(modelo_armazenamento);
+
+        printf("Clicou no botao Listar, buscando variavel %s \n", widgets->interno->pesq_relevancia);
      //   Ordem2(widgets->interno->raiz, widgets);
         
-        
+        calculoRelevancia(widgets->interno->raiz,widgets->interno->pesq_relevancia, &(widgets->interno->doc), &(widgets->interno->busca), data);
         
 
         
@@ -385,6 +390,9 @@ void printPalavra(Arvore no, void *data) {
     
     GtkListStore *modelo_armazenamento = widgets->liststore;
     GtkTreeIter *iter;
+    char *palavra = NULL;
+    
+    
     char *Ids = NULL;
 
     /* Funcao com o objetivo de imprimir todas as palavras dentro da Patricia*/
@@ -403,15 +411,20 @@ void printPalavra(Arvore no, void *data) {
         
         
         
-
+        palavra= (char*)malloc(sizeof(char)*strlen(no->NO.Chave)+1);
+        strcpy(palavra, no->NO.Chave);
         
-        gtk_list_store_set(modelo_armazenamento, &iter, 0, no->NO.Chave, -1);
+        gtk_list_store_set(modelo_armazenamento, &iter, 0, palavra, -1);
 
-        Ids = Imprime_lista(&no->tuplas);
+       
+        Ids = (char*)malloc(sizeof(char)*strlen(Imprime_lista(&no->tuplas))+1);
+        strcpy(Ids, Imprime_lista(&no->tuplas));
         gtk_list_store_set(modelo_armazenamento, &iter, 1, Ids, -1);
 
        //libera memoria
+       
         free(Ids);
+        free(palavra);
         }
     
 }
@@ -419,9 +432,10 @@ void printPalavra(Arvore no, void *data) {
 
 char* Imprime_lista(Tlista * lista){
     char IdNovo[15];
-    char stringCompleta[200] = {""};
-
+    char stringCompleta[200];
     char *stringRetorno;
+    strcpy(stringCompleta, "");
+
     Aponta_lista aux = lista->primeiro->prox;
     if (Lista_vazia(lista)){
         //printf("Essa lista e vazia\n");
@@ -442,3 +456,100 @@ char* Imprime_lista(Tlista * lista){
     strcpy(stringRetorno, stringCompleta);
     return stringRetorno;
 }
+
+int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* busca, void *data){
+    double relevancia;
+    AppWidgets *widgets = (AppWidgets *)data;
+    int qtDocs = quantidadeDocs(doc);
+    printf("Quantidade de documentos: %d\n", qtDocs);
+    ApontaCelulaDoc aux = doc->primeiro->prox;
+    while(aux != NULL){
+        relevancia = (1.0 / aux->totalTermos) * termo(raiz, entradaBusca, qtDocs, aux->idDoc);
+        printf("idDoc: %d\n", aux->idDoc);
+        
+        
+        if(relevancia > 0){
+            InsereBuscaOrdenado(busca, aux->idDoc, relevancia);
+        }
+        aux = aux->prox;
+    }
+
+
+    if(BuscaVazia(&(widgets->interno->busca))){
+        printf("Nenhum documento encontrado para a busca \"%s\"\n", entradaBusca);
+        mensagem("Pesquisa invalida", "Nenhum documento encontrado para a busca", "dialog-error");
+        return 0;
+    }
+    
+    printf("Resultado da busca para \"%s\":\n",entradaBusca);
+
+    ImprimeBusca(busca, doc, data);
+    // Realiza o cálculo da relevância para cada documento e insere na lista encadeada de busca
+    // A relevância é calculada utilizando a função termo() e os resultados são inseridos em ordem na lista
+    // Em seguida, os resultados são impressos utilizando a função ImprimeBusca()
+    
+}
+
+
+void ImprimeBusca(TBusca* busca, Tdocumento* doc, void *data) {
+    AppWidgets *widgets = (AppWidgets *)data;
+    
+    GtkListStore *modelo_armazenamento = widgets->liststore2;
+    GtkTreeIter *iter;
+    
+    ApontaBusca aux = busca->primeiro->prox;
+    
+
+
+
+
+    while (aux != NULL) {
+        
+        imprimeDoc(doc, aux->idDoc, data);
+        printf(" Relevancia: %.2lf\n", aux->relevancia);
+        removeBusca(busca, aux);
+        aux = aux->prox;
+    }
+    // Percorre a lista de busca e imprime os resultados, juntamente com a relevância
+    // A função imprimeDoc() imprime informações do documento associado ao ID armazenado na célula de busca
+}
+void imprimeDoc(Tdocumento* doc, int idDoc, void *data){
+    AppWidgets *widgets = (AppWidgets *)data;
+    char nomeDocString[150];
+    char idDocString[15];
+    char *nomeDoc = NULL;
+    char *idDochar = NULL;
+    GtkTreeIter *iter;
+    GtkListStore *modelo_armazenamento = widgets->liststore2;
+    ApontaCelulaDoc aux = doc->primeiro->prox;
+    while(aux){
+        if(aux->idDoc == idDoc){
+            printf("%d",aux->idDoc);
+            //transforma o id do documento em string
+            sprintf(idDocString, "%d", aux->idDoc);
+
+            printf(" %s", aux->nomeDoc);
+            //transforma o nome do documento em string
+            sprintf(nomeDocString, "%s", aux->nomeDoc);
+            nomeDoc = (char *)malloc(sizeof(char) * (strlen(nomeDocString) + 1));
+            strcpy(nomeDoc, nomeDocString);
+            idDochar = (char *)malloc(sizeof(char) * (strlen(idDocString) + 1));
+            strcpy(idDochar, idDocString);
+            
+            gtk_list_store_append(modelo_armazenamento, &iter);
+            
+
+            //colocar o valor de idDoc e nomeDoc na lista, na primeira e segunda coluna
+            gtk_list_store_set(modelo_armazenamento, &iter, 0, idDochar, -1);
+            gtk_list_store_set(modelo_armazenamento, &iter, 1, nomeDoc, -1);
+
+            free(nomeDoc);
+            free(idDochar);
+
+            return;
+        }
+        aux = aux->prox;
+    }
+    // Percorre a lista de documentos e imprime o nome do documento associado ao ID
+}
+

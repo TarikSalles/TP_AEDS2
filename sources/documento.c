@@ -56,14 +56,3 @@ int quantidadeDocs(Tdocumento * doc){
     // Percorre a lista e incrementa um contador a cada iteração
 }
 
-void imprimeDoc(Tdocumento* doc, int idDoc){
-    ApontaCelulaDoc aux = doc->primeiro->prox;
-    while(aux){
-        if(aux->idDoc == idDoc){
-            printf("ID Documento: %d | Nome Documento: %s |", aux->idDoc, aux->nomeDoc);
-            return;
-        }
-        aux = aux->prox;
-    }
-    // Percorre a lista de documentos e imprime o nome do documento associado ao ID
-}

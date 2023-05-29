@@ -26,4 +26,4 @@ int insereDoc(Tdocumento*doc, int idDoc, char* nomeDoc);
 int quantidadeDocs(Tdocumento * doc);
 
 // Imprime as informações de um documento com base em seu ID
-void imprimeDoc(Tdocumento* doc, int idDoc);
+
