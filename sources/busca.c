@@ -3,7 +3,7 @@
 #include "../headers/busca.h"
 
 int InicializaBusca(TBusca* busca){
-    printf("InicializaBusca\n");
+    
     busca->primeiro = (ApontaBusca)malloc(sizeof(CBusca));
     if (busca->primeiro){
         busca->ultimo = busca->primeiro;

@@ -1,3 +1,6 @@
+// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
+
+
 #include "../headers/gtk.h"
 
 
@@ -14,7 +17,7 @@
 
     //substituir o valor do entry pelo valor da string
     gtk_entry_set_text(GTK_ENTRY(widgets->entry_path), path);
-    printf("path: %s\n", path);
+    
 
     //usa a funcao message para imprimir o valor da entrada
     
@@ -76,12 +79,10 @@ int verificaPath(const char *path){
     //trocar o gtkstack para view_menu
    
 
-    
-    printf("Clicou no botao confirmar\n");
  }
 
  void on_bt_voltar_clicked (GtkButton *bt_voltar1, void *data) {
-    printf("Clicou no botao voltar\n");
+    
 
     AppWidgets *widgets = (AppWidgets *)data;
     //exibir mensagem na tela, informando que o documento foi encontrado
@@ -97,7 +98,6 @@ void on_bt_MontarPatricia_clicked (GtkButton *bt_MontarPatricia, void *data) {
 
 
         
-        printf("Clicou no botao Montar\n");
         
         if(Leitura(widgets->interno->path_atual, &(widgets->interno->raiz), &(widgets->interno->doc)) == 0){
             mensagem("Arvore montada", "A arvore foi montada com sucesso", "dialog-information");
@@ -131,11 +131,9 @@ void on_bt_ImprimirPatricia_clicked(GtkButton *bt_ImprimirPatricia, void *data) 
         int verificado;
         verificado = widgets->interno->verif_patricia;
 
-        printf("Clicou no botao Imprimir\n");
 
         if(verificaArvoreMontada(verificado) == 1){
             
-            printf("Arvore ja esta montada\nProximaTela\n");
             gtk_stack_set_visible_child_name(widgets->stack, "view_imprimir");  
             //limpar o gtkliststore
             gtk_list_store_clear(widgets->liststore);
@@ -154,7 +152,6 @@ void on_bt_listar_clicked(GtkButton *bt_listar, void *data) {
 
         gtk_list_store_clear(modelo_armazenamento);
         
-        printf("Clicou no botao Listar\n");
         
         
         Ordem(widgets->interno->raiz, data);
@@ -175,13 +172,10 @@ void on_bt_RealizarBusca_clicked (GtkButton *bt_RealizarBusca, void *data) {
         verificado = widgets->interno->verif_patricia;
         
         
-        printf("Clicou no botao Buscar\n");
-
 
 
         if(verificaArvoreMontada(verificado) == 1){
             
-            printf("Arvore ja esta montada\nProximaTela\n");
             gtk_stack_set_visible_child_name(widgets->stack, "view_relevanciaPesq");
             //limpar o gtkliststore
             gtk_list_store_clear(widgets->liststore2);
@@ -196,7 +190,6 @@ void on_bt_pesqDoc_clicked (GtkButton *bt_pesqDoc, void *data) {
 
         
         
-        printf("Clicou no botao pesqDoc\n");
 
 
         gtk_stack_set_visible_child_name(widgets->stack, "view_inicial");
@@ -213,7 +206,6 @@ void on_bt_relevanciaPesq_clicked (GtkButton *bt_relevancia, void *data) {
 
         widgets->interno->pesq_relevancia = pesq;
        
-        printf("Clicou no botao pesqDoc\n");
 
         //verifica se a entry esta vazia
         if(strcmp(widgets->interno->pesq_relevancia, "") == 0){
@@ -245,7 +237,6 @@ void on_bt_listar2_clicked (GtkButton *bt_listar2, void *data) {
         
         gtk_list_store_clear(modelo_armazenamento);
 
-        printf("Clicou no botao Listar, buscando variavel %s \n", widgets->interno->pesq_relevancia);
      //   Ordem2(widgets->interno->raiz, widgets);
         
         calculoRelevancia(widgets->interno->raiz,widgets->interno->pesq_relevancia, &(widgets->interno->doc), &(widgets->interno->busca), data);
@@ -400,7 +391,7 @@ void printPalavra(Arvore no, void *data) {
     
 
     if(no == NULL)
-        printf("No Nulo\n");
+        return;
     else if(no->nt == Externo){
         //printf("\nChave:%s \n",no->NO.Chave);
 
