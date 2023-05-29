@@ -4,9 +4,9 @@
 Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto 
 
 
-Para executar o codigo, é necessario fazer o seguintes passos, 
+Para executar o código, é necessário fazer o seguintes passos, 
 
-#Abra a pasta TP_AEDS2 dentro do terminl
+#Abra a pasta TP_AEDS2 dentro do terminal
 
 #Criar uma pasta build, que pode ser feito pelo seguinte comando no terminal
 mkdir build 
@@ -20,6 +20,6 @@ cmake ..
 #executar o makefile gerado
 make
 
-#entrar dentr da pasta bin e executar a aplicação
+#entrar dentro da pasta bin e executar a aplicação
 cd bin
 ./application
