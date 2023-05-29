@@ -26,5 +26,8 @@ int InsereBuscaOrdenado(TBusca * busca, int idDoc, double relevancia);
 // Remove a célula de busca
 int removeBusca(TBusca * busca, ApontaBusca aux);
 
+// Calcula o somatorio dos pesos dos termos da busca
 double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc);
+
+// Calcula o peso do termo
 double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo);

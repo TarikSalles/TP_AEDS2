@@ -166,7 +166,6 @@ Arvore Insere_Arvore(ChaveTipo k, Arvore *t, int idDoc, char* nomeDoc, Tdocument
       i= 0;
     if(strcmp(p->NO.Chave,k) == 0){ //Se a palavra armazenada no No for igual a palavra k
        Insere(&p->tuplas,idDoc); //Palavra ja existe e agora e incrementado na tupla
-       printf("\nPalavra %s ja existe na Arvore\n",p->NO.Chave); 
        return (*t); //Retorna arvore para sair da funcao
 
     }else{ //Palavra nao existe na Patricia

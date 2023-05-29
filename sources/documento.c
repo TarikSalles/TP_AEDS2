@@ -10,13 +10,12 @@ int inicializaDoc(Tdocumento* doc){
     }
     return 1;
     // Inicializa a lista de documentos
-    // Cria a célula de cabeça vazia e retorna 1 em caso de sucesso
+    // Cria a célula de cabeça vazia
 }
 
 int docVazio(Tdocumento* doc){
     return doc->primeiro == doc->ultimo;
     // Verifica se a lista de documentos está vazia
-    // Retorna 1 se estiver vazia, caso contrário retorna 0
 }
 
 int insereDoc(Tdocumento* doc, int idDoc, char* nomeDoc){

@@ -461,28 +461,20 @@ int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* 
     double relevancia;
     AppWidgets *widgets = (AppWidgets *)data;
     int qtDocs = quantidadeDocs(doc);
-    printf("Quantidade de documentos: %d\n", qtDocs);
     ApontaCelulaDoc aux = doc->primeiro->prox;
     while(aux != NULL){
-        relevancia = (1.0 / aux->totalTermos) * termo(raiz, entradaBusca, qtDocs, aux->idDoc);
-        printf("idDoc: %d\n", aux->idDoc);
-        
-        
+        relevancia = (1.0 / aux->totalTermos) * termo(raiz, entradaBusca, qtDocs, aux->idDoc);      
         if(relevancia > 0){
             InsereBuscaOrdenado(busca, aux->idDoc, relevancia);
-            printf("relevancia = %lf\n id = %d\n", relevancia, aux->idDoc);
         }
         aux = aux->prox;
     }
 
 
     if(BuscaVazia(&(widgets->interno->busca)) != 0){
-        printf("Nenhum documento encontrado para a busca \"%s\"\n", entradaBusca);
         mensagem("Pesquisa invalida", "Nenhum documento encontrado para a busca", "dialog-error");
         return 0;
     }
-    
-    printf("Resultado da busca para \"%s\":\n",entradaBusca);
 
     ImprimeBusca(busca, doc, data);
     // Realiza o cálculo da relevância para cada documento e insere na lista encadeada de busca
@@ -507,7 +499,7 @@ void ImprimeBusca(TBusca* busca, Tdocumento* doc, void *data) {
     while (aux != NULL) {
         
         imprimeDoc(doc, aux->idDoc, aux, data);
-        printf(" Relevancia: %.2lf\n", aux->relevancia);
+        
 
         removeBusca(busca, aux);
         aux = aux->prox;
@@ -528,15 +520,15 @@ void imprimeDoc(Tdocumento* doc, int idDoc, ApontaBusca busca,void *data){
     ApontaCelulaDoc aux = doc->primeiro->prox;
     while(aux){
         if(aux->idDoc == idDoc){
-            printf("%d",aux->idDoc);
+            
             //transforma o id do documento em string
             sprintf(idDocString, "%d", aux->idDoc);
 
-            printf(" %s", aux->nomeDoc);
+            
             //transforma o nome do documento em string
             sprintf(nomeDocString, "%s", aux->nomeDoc);
 
-            printf("foi feito o calculo %.2lf", busca->relevancia);
+            
             sprintf(relevanciaString, "%.2lf", busca->relevancia);
 
 

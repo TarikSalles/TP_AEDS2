@@ -49,8 +49,6 @@ int Insere(Tlista * lista, int index){
         //Se a tupla ja existe:
         if (aux->prox->index_arquivo == index){
             aux->prox->num_ocorrencias += 1;
-            //printf("index == aux\n");
-            //printf("< %d , %d >\n", lista->ultimo->num_ocorrencias, lista->ultimo->index_arquivo);
             return 0;
         }
         //Se e necessario continuar avancando nas listas:
