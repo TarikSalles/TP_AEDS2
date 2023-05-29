@@ -87,4 +87,4 @@ int Leitura(const char *path, Arvore * raiz, Tdocumento * documento);
 
 int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento * doc, TBusca * busca, void *data);
 void ImprimeBusca(TBusca * busca, Tdocumento * doc, void *data);
-void imprimeDoc(Tdocumento* doc, int idDoc, void *data);
+void imprimeDoc(Tdocumento* doc, int idDoc, ApontaBusca busca,void *data);

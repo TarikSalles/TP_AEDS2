@@ -505,20 +505,23 @@ void ImprimeBusca(TBusca* busca, Tdocumento* doc, void *data) {
 
     while (aux != NULL) {
         
-        imprimeDoc(doc, aux->idDoc, data);
+        imprimeDoc(doc, aux->idDoc, aux, data);
         printf(" Relevancia: %.2lf\n", aux->relevancia);
+
         removeBusca(busca, aux);
         aux = aux->prox;
     }
     // Percorre a lista de busca e imprime os resultados, juntamente com a relevância
     // A função imprimeDoc() imprime informações do documento associado ao ID armazenado na célula de busca
 }
-void imprimeDoc(Tdocumento* doc, int idDoc, void *data){
+void imprimeDoc(Tdocumento* doc, int idDoc, ApontaBusca busca,void *data){
     AppWidgets *widgets = (AppWidgets *)data;
     char nomeDocString[150];
     char idDocString[15];
+    char relevanciaString[15];
     char *nomeDoc = NULL;
     char *idDochar = NULL;
+    char *relevancia = NULL;
     GtkTreeIter *iter;
     GtkListStore *modelo_armazenamento = widgets->liststore2;
     ApontaCelulaDoc aux = doc->primeiro->prox;
@@ -531,10 +534,21 @@ void imprimeDoc(Tdocumento* doc, int idDoc, void *data){
             printf(" %s", aux->nomeDoc);
             //transforma o nome do documento em string
             sprintf(nomeDocString, "%s", aux->nomeDoc);
+
+            printf("foi feito o calculo %.2lf", busca->relevancia);
+            sprintf(relevanciaString, "%.2lf", busca->relevancia);
+
+
+
             nomeDoc = (char *)malloc(sizeof(char) * (strlen(nomeDocString) + 1));
             strcpy(nomeDoc, nomeDocString);
             idDochar = (char *)malloc(sizeof(char) * (strlen(idDocString) + 1));
             strcpy(idDochar, idDocString);
+            relevancia = (char *)malloc(sizeof(char) * (strlen(relevanciaString) + 1));
+            strcpy(relevancia, relevanciaString);
+
+            
+
             
             gtk_list_store_append(modelo_armazenamento, &iter);
             
@@ -542,9 +556,11 @@ void imprimeDoc(Tdocumento* doc, int idDoc, void *data){
             //colocar o valor de idDoc e nomeDoc na lista, na primeira e segunda coluna
             gtk_list_store_set(modelo_armazenamento, &iter, 0, idDochar, -1);
             gtk_list_store_set(modelo_armazenamento, &iter, 1, nomeDoc, -1);
+            gtk_list_store_set(modelo_armazenamento, &iter, 2, relevancia, -1);
 
             free(nomeDoc);
             free(idDochar);
+            free(relevancia);
 
             return;
         }
