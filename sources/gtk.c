@@ -470,12 +470,13 @@ int calculoRelevancia(Arvore raiz, char* entradaBusca, Tdocumento* doc, TBusca* 
         
         if(relevancia > 0){
             InsereBuscaOrdenado(busca, aux->idDoc, relevancia);
+            printf("relevancia = %lf\n id = %d\n", relevancia, aux->idDoc);
         }
         aux = aux->prox;
     }
 
 
-    if(BuscaVazia(&(widgets->interno->busca)) != 1){
+    if(BuscaVazia(&(widgets->interno->busca)) != 0){
         printf("Nenhum documento encontrado para a busca \"%s\"\n", entradaBusca);
         mensagem("Pesquisa invalida", "Nenhum documento encontrado para a busca", "dialog-error");
         return 0;

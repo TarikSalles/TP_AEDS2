@@ -68,32 +68,41 @@ int removeBusca(TBusca* busca, ApontaBusca aux){
 double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
     char palavra[50];
     int i=0,c;
-    for (i = 0; entradaBusca[i] != ' '; i++){
-        palavra[i] = tolower(entradaBusca[i]);
-        if (entradaBusca[i] == '\0'){
-            break;
-        }
+    for (i = 0, c = 0; entradaBusca[i] != ' '; i++, c++){
+            if (entradaBusca[i] == ' ' || entradaBusca[i] == '\0'){
+                palavra[c] = '\0';
+                break;
+            }
+            palavra[c] = tolower(entradaBusca[i]);
+
     }
+    palavra[i] = '\0';
     Arvore aux;
     float peso = 0;
     while(palavra){
-        printf("palavra: %s\n", palavra);
+        //printf("palavra: %s\n", palavra);
         aux = Pesquisa_Palavra_Arvore(raiz, palavra);
         if(aux) {
             // condicional para verificar em qual tupla esta o documento que estou acessando
             peso += pesoTermo(Numero_Ocorrencias_Especifico(&(aux->tuplas), idDoc), numDocs, Numero_Total_Tuplas(&(aux->tuplas)));
-            //peso += pesoTermo(aux->NO.lista.lista[i].num_ocorrencias, numDocs, aux->NO.lista.fim);
         }
         else
             peso += 0;
+        //printf("peso: %f\n", peso);
         if (entradaBusca[i] == '\0'){
             return peso;
         }
-        for (i = i+1, c = 0; entradaBusca[i] != ' '; i++, c++){
-            palavra[c] = tolower(entradaBusca[i]);
-            if (entradaBusca[i] == '\0'){
+        i = i+1;
+        for (c = 0; c < 50 ; c++){
+            palavra[c] = '\0';
+        }
+        for (c = 0; entradaBusca[i] != ' '; i++, c++){
+            if (entradaBusca[i] == ' ' || entradaBusca[i] == '\0'){
+                palavra[c] = '\0';
                 break;
             }
+            palavra[c] = tolower(entradaBusca[i]);
+
         }
     }
     return peso;
@@ -102,6 +111,6 @@ double termo(Arvore raiz, char* entradaBusca, int numDocs, int idDoc){
 double pesoTermo(int numOcorrencias, int numDocs, int docsComTermo) {
     if (numOcorrencias == 0)
         return 0;
-    printf("numOcorrencias: %d\n", numOcorrencias);
+    //printf("numOcorrencias: %d\n", numOcorrencias);
     return (numOcorrencias * ( log10(numDocs) / docsComTermo));
 }
