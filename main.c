@@ -1,119 +1,68 @@
-// Guilherme Broedel Zorzal, Tarik Salles Paiva, Danilo Matos de Oliveira, Alvaro Gomes da Silva Neto
-
-#include "headers/busca.h"
-
-//? gcc .\headers\lista.h .\headers\documento.h .\headers\busca.h .\headers\Patricia.h .\sources\busca.c .\sources\documento.c .\sources\lista.c .\sources\Patricia.c .\main.c -o run
+#include "headers/gtk.h"
 
 
-int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca);
-int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento);
+int main(int argc, char *argv[]){
+    
+    GtkBuilder *builder;
+    AppWidgets *widgets = g_slice_new(AppWidgets);
 
-int main(){
-    //Cabecalho dos tads
-    Arvore raiz;
-    Tdocumento documento;
-    TBusca busca;
-    FILE * arq;
+    gtk_init(&argc, &argv);
 
-    // ? Funcao de inicializaçao
-    Inicializa_geral(&raiz, &documento, &busca);
+    // Adiciona o xml ao builder, conseguindo a descricao de cada objeto
+    builder = gtk_builder_new();
+    gtk_builder_add_from_file(builder, "glade/window.glade", NULL);
+    printf("builder: %p\n", builder);
 
-    // ? Funcao de leitura
-    Leitura(arq, &raiz, &documento);
-
-
-    Ordem(raiz);
-
-    calculoRelevancia(raiz, "carro", &documento, &busca);
-    calculoRelevancia(raiz, "the", &documento, &busca);
-    calculoRelevancia(raiz, "great", &documento, &busca);
-    calculoRelevancia(raiz, "a", &documento, &busca);
-    calculoRelevancia(raiz, "is", &documento, &busca);
-    calculoRelevancia(raiz, "ropper is a", &documento, &busca);
-    calculoRelevancia(raiz, "is", &documento, &busca);
-
-    return 0;
-}
-
-int Inicializa_geral(Arvore * raiz, Tdocumento * documento, TBusca * busca){
-    Inicializar_Arvore(raiz);
-    inicializaDoc(documento);
-    InicializaBusca(busca);
-    return 0;
-}
-
-int Leitura(FILE * arq, Arvore * raiz, Tdocumento * documento){
-    //cabecalhos de constantes na main
-    char path_arquivo[300], string[150] , string_tratada[150], string_nome_arquivo[150];
-    int index_do_arquivo = 0, contador = -1, tamanho_string, c; //auxilia na verificação de qual arquivo se está lendo
-    /** Explicações:
-     * string = guarda as strings provenientes da leitura do arquivo
-     * string_tratada = string sem ';'
-     * contador = conta o "estagio" da leitura do arquivo(necessario para saber quando trata-se de uma string ou de um index de arquivo)
-     * index_do_arquivo = autoexplicativo
-     * tamanho_string = auto_explicativo
-     */
-    printf("Digite o path do arquivo:\n");
-
-    // ! scanf("%s",&path_arquivo);
-    strcpy(path_arquivo,"Data/sem_pontuacao_reduzido.txt");
-
-    //Abertura e verificacao do estado do arquivo
-    arq = fopen(path_arquivo, "r");
-    if (arq == NULL){
-        printf("Nao foi possivel abrir o arquivo!\n");
+    if (builder == NULL)
+    {
+        g_critical("Nao foi possivel carregar o arquivo");
         return 1;
     }
 
-    while(fscanf(arq,"%s",string) != EOF){
+    // Conseguir o endereco da window da janela principal
 
-        tamanho_string = strlen(string);
 
-        if (string[tamanho_string-1] == ';'){
-            //Cada arquivo tem 3 partes: Index, titulo e abstract. Isso explica o porque do mod 3
-            contador = (contador + 1)%4; 
+    widgets->stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
+    widgets->window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
 
-            //remove o ';' da string:
-            for (c = 0; c < (tamanho_string - 1); c++){
-                if(isalnum(string[c])){
-                    string_tratada[c] = tolower(string[c]);
-                }
-                else{
-                    string_tratada[c] = string[c];
-                }
-            }
-            //Substitui o ';' pelo '\0'
+    widgets->bt_pesquisar = GTK_WIDGET(gtk_builder_get_object(builder, "bt_pesquisar"));
+    widgets->bt_confirmar = GTK_WIDGET(gtk_builder_get_object(builder, "bt_confirmar"));
+    widgets->bt_relevanciaPesq = GTK_WIDGET(gtk_builder_get_object(builder, "bt_relevanciaPesq"));
+    widgets->bt_voltar = GTK_WIDGET(gtk_builder_get_object(builder, "bt_voltar"));
+    widgets->bt_voltar2 = GTK_WIDGET(gtk_builder_get_object(builder, "bt_voltar2"));
+    widgets->bt_voltar3 = GTK_WIDGET(gtk_builder_get_object(builder, "bt_voltar3"));
+    widgets->entry_path = GTK_WIDGET(gtk_builder_get_object(builder, "entry_path"));
+    widgets->entry_relevancia = GTK_WIDGET(gtk_builder_get_object(builder, "entry_relevancia"));
+    widgets->bt_pesqDoc = GTK_WIDGET(gtk_builder_get_object(builder, "bt_pesqDoc"));
+    widgets->bt_MontarPatricia = GTK_WIDGET(gtk_builder_get_object(builder, "bt_MontarPatricia"));
+    widgets->bt_ImprimirPatricia = GTK_WIDGET(gtk_builder_get_object(builder, "bt_ImprimirPatricia"));
+    widgets->bt_RealizarBusca = GTK_WIDGET(gtk_builder_get_object(builder, "bt_RealizarBusca"));
 
-            //Atualiza string para ser a string tratada
-            strcpy(string, string_tratada);
-            string[tamanho_string-1] = '\0';
+    widgets->liststore = GTK_LIST_STORE(gtk_builder_get_object(builder, "liststore1"));
+    widgets->liststore2 = GTK_LIST_STORE(gtk_builder_get_object(builder, "liststore2"));
 
-            //caso esteja no estado de leitura do index:
-            if (contador == 0){
-                index_do_arquivo = atoi(string);
-                continue;
-            }
-            if (contador == 1){
-                strcpy(string_nome_arquivo, string);
-                continue;
-            }
 
-        }
-        else{
-            for (c = 0; c < (tamanho_string); c++){
-                if(isalnum(string[c])){
-                    string_tratada[c] = tolower(string[c]);
-                }
-                else{
-                    string_tratada[c] = string[c];
-                }
-            }
-            strcpy(string,string_tratada);
-            string[tamanho_string] = '\0';
-        }
-        Insere_Palavra_Arvore(raiz, string , index_do_arquivo, string_nome_arquivo, documento);
+
+
+    if (widgets->window == NULL)
+    {
+        g_critical("Falha ao obter o objeto window do arquivo glade");
+        return 1;
     }
-    fclose(arq);
+
+    // Conseguir o endereco do botao e dos sinais
+    gtk_builder_connect_signals(builder, widgets);
+
+    // Nao preciso mais do construtor(builder)
+    g_object_unref(builder);
+
+    gtk_widget_show(widgets->window);
+    
+    gtk_main();
+
+    // Destroi o builder
+    g_slice_free(AppWidgets, widgets);
+
     return 0;
 }
 

@@ -19,7 +19,7 @@ if (PKG_CONFIG_FOUND)
         add_executable(application "")
         target_sources(application
         PUBLIC 
-            ${CMAKE_CURRENT_LIST_DIR}/mainGTK-teste.c
+            ${CMAKE_CURRENT_LIST_DIR}/main.c
             ${CMAKE_CURRENT_LIST_DIR}/sources/gtk.c
             ${CMAKE_CURRENT_LIST_DIR}/sources/busca.c
             ${CMAKE_CURRENT_LIST_DIR}/sources/documento.c
